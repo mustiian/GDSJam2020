@@ -13,7 +13,7 @@ public class PointsManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(AutomaticlyIncrease(AutomaticIncreasePoints, AutomaticIncreaseDelay));
+        StartCoroutine(AutomaticallyIncrease(AutomaticIncreasePoints, AutomaticIncreaseDelay));
     }
 
     public bool HasRequiredPoints(int value) => Points - value >= 0 ? true : false;
@@ -33,7 +33,7 @@ public class PointsManager : MonoBehaviour
         UIText.text = Points.ToString();
     }
 
-    private IEnumerator AutomaticlyIncrease(int value, float time)
+    private IEnumerator AutomaticallyIncrease(int value, float time)
     {
         while (true)
         {
