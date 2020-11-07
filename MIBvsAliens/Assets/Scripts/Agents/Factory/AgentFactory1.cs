@@ -9,10 +9,13 @@ public class AgentFactory1 : MonoBehaviour, IAgentFactory
 
     public BaseAgent Create(Vector3 position)
     {
-        Debug.Log("prefab " + prefab.name);
+        Agent1 agent = prefab.GetComponent<Agent1>();
 
-        var agent = GameObject.Instantiate(prefab, position, Quaternion.identity);
-
-        return agent.GetComponent<Agent1>();
+        if (GameManager.instance.pointsManager.HasRequiredPoints(agent.cost))
+        {
+            var gameObject = Instantiate(prefab, position, Quaternion.identity);
+            return agent;
+        }
+        else return null;
     }
 }

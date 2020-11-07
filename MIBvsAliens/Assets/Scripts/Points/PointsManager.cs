@@ -16,6 +16,8 @@ public class PointsManager : MonoBehaviour
         StartCoroutine(AutomaticlyIncrease(AutomaticIncreasePoints, AutomaticIncreaseDelay));
     }
 
+    public bool HasRequiredPoints(int value) => Points - value > 0 ? true : false;
+
     public void ReducePoints(int value)
     {
         Points -= value;
