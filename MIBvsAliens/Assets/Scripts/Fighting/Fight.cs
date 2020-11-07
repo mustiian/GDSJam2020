@@ -61,6 +61,7 @@ public class Fight : MonoBehaviour
             bool isDead = _currentEnemy.Hit(damageToDeal);
             if (isDead)
             {
+                //TODO: if player - get points. Somehow deal with multiple reward if more than 2 characters killed the enemy 
                 ChangeToNextEnemy();
             }
         }
@@ -72,13 +73,14 @@ public class Fight : MonoBehaviour
         if (!Alive())
         {
             _fightingCreature.state = State.Dying;
+            OnDied(EventArgs.Empty);
             return true;
         }
 
         return false;
     }
     
-    protected virtual void OnDied(EventArgs e)
+    protected void OnDied(EventArgs e)
     {
         EventHandler handler = Died;
         handler?.Invoke(this, e);
