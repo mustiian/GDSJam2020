@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AgentFactory1 : MonoBehaviour, IAgentFactory
 {
@@ -15,6 +12,7 @@ public class AgentFactory1 : MonoBehaviour, IAgentFactory
         {
             var gameObject = Instantiate(prefab, startPosition, Quaternion.identity);
             var movement = gameObject.GetComponent<Movement>();
+            //movement.SetStartPosition(startPosition); for aliens to go back with a cow
             movement.SetDestination(endPosition);
             return agent;
         }

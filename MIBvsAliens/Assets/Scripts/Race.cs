@@ -1,5 +1,5 @@
 ﻿public enum Race
 {
     Aliens,
-    Humans
+    Agents
 }

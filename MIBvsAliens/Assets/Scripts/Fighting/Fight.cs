@@ -18,7 +18,7 @@ public class Fight : MonoBehaviour
         _fightingCreature = gameObject.GetComponent<BaseCreature>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         var otherCreature = other.GetComponent<BaseCreature>();
         if (otherCreature.race == _fightingCreature.race)
@@ -38,7 +38,11 @@ public class Fight : MonoBehaviour
         {
             _currentEnemy = _enemiesToFight.Dequeue();
             if (_currentEnemy.Alive())
+            {
                 _fightingCreature.state = State.Fighting;
+                Debug.Log(_fightingCreature.race.ToString("F") + "start fighting");
+            }
+                
             else
                 ChangeToNextEnemy();
         }
@@ -55,7 +59,7 @@ public class Fight : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_currentEnemy != null)
+        if (_currentEnemy != null && _currentEnemy.Alive())
         {
             var damageToDeal = Time.fixedDeltaTime * damage;
             bool isDead = _currentEnemy.Hit(damageToDeal);
@@ -82,6 +86,7 @@ public class Fight : MonoBehaviour
     
     protected void OnDied(EventArgs e)
     {
+        Debug.Log(_fightingCreature.race.ToString("F") + "is dead");
         EventHandler handler = Died;
         handler?.Invoke(this, e);
     }

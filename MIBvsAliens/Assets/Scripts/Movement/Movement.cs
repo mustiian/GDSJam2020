@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     private Transform _transform;
     private Vector3 _destination;
     private BaseCreature _creatureToMove;
+    private Vector3 _startPosition;
 
     private void Start()
     {
@@ -22,10 +23,21 @@ public class Movement : MonoBehaviour
             float step = speed * Time.fixedDeltaTime;
             _transform.position = Vector3.MoveTowards(_transform.position, _destination, step);
         }
+        else if (_creatureToMove.state == State.MovingBack) // aliens only
+        {
+            float step = speed * Time.fixedDeltaTime;
+            _transform.position = Vector3.MoveTowards(_transform.position, _startPosition, step);
+            //if the alien reached their spaceship with a cow
+        }
     }
 
     public void SetDestination(Vector3 endPosition)
     {
         _destination = endPosition;
+    }
+    
+    public void SetStartPosition(Vector3 startPosition)
+    {
+        _startPosition = startPosition;
     }
 }
