@@ -11,8 +11,8 @@ public class AgentChooser : MonoBehaviour
     public IAgentFactory agentFactory;
     void Start()
     {
-        buttonAgent1.onClick.AddListener(() => ChangeCurrentAgentFactory(gameObject.AddComponent<AgentFactory1>()));
-        buttonAgent2.onClick.AddListener(() => ChangeCurrentAgentFactory(gameObject.AddComponent<AgentFactory2>()));
+        buttonAgent1.onClick.AddListener(() => ChangeCurrentAgentFactory(FindObjectOfType<AgentFactory1>()));
+        buttonAgent2.onClick.AddListener(() => ChangeCurrentAgentFactory(FindObjectOfType<AgentFactory2>()));
     }
     
     void ChangeCurrentAgentFactory(IAgentFactory newAgentFactory)
