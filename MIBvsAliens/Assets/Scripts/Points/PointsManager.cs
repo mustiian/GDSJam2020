@@ -5,7 +5,7 @@ using TMPro;
 
 public class PointsManager : MonoBehaviour
 {
-    [HideInInspector]public int Points;
+    public int Points;
     
     public int AutomaticIncreasePoints;
     public float AutomaticIncreaseDelay;
@@ -16,7 +16,7 @@ public class PointsManager : MonoBehaviour
         StartCoroutine(AutomaticlyIncrease(AutomaticIncreasePoints, AutomaticIncreaseDelay));
     }
 
-    public bool HasRequiredPoints(int value) => Points - value > 0 ? true : false;
+    public bool HasRequiredPoints(int value) => Points - value >= 0 ? true : false;
 
     public void ReducePoints(int value)
     {
