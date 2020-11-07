@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AgentFactory2 : MonoBehaviour, IAgentFactory
 {
-    public BaseAgent Create(Vector3 position)
+    public BaseAgent Create(Vector3 position, Vector3 endPosition)
     {
         throw new NotImplementedException();
     }

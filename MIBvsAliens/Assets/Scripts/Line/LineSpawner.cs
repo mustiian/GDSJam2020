@@ -13,9 +13,9 @@ public class LineSpawner : MonoBehaviour
     private void OnMouseDown()
     {
         var position = SpawnPoint.position;
-        var agent = GameManager.instance.agentChooser.agentFactory.Create(new Vector3(position.x, position.y + _yOffset));
+        var agent = GameManager.instance.agentChooser.agentFactory.Create(
+            new Vector3(position.x, position.y + _yOffset), EndPoint.position);
         GenerateNewOffset();
-        agent.MoveTo(EndPoint.position);
         if (!agent)
             return;
         //GameManager.instance.pointsManager.ReducePoints(agent.cost);
