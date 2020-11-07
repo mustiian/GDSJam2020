@@ -17,7 +17,7 @@ public class AgentChooser : MonoBehaviour
     
     void ChangeCurrentAgentFactory(IAgentFactory newAgentFactory)
     {
-        Debug.Log("Agent changed");
+        Debug.Log("Agent changed" + newAgentFactory.ToString());
         agentFactory = newAgentFactory;
     }
 

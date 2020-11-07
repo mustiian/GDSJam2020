@@ -5,15 +5,14 @@ using UnityEngine;
 
 public class AgentFactory1 : MonoBehaviour, IAgentFactory
 {
-    private Agent1 agent;
+    public GameObject prefab;
 
-    public BaseAgent Create()
+    public BaseAgent Create(Vector3 position)
     {
-        return agent;
-    }
-    
-    void Start()
-    {
-        agent = GetComponent<Agent1>();
+        Debug.Log("prefab " + prefab.name);
+
+        var agent = GameObject.Instantiate(prefab, position, Quaternion.identity);
+
+        return agent.GetComponent<Agent1>();
     }
 }

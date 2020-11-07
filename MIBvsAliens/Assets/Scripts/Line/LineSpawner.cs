@@ -9,10 +9,8 @@ public class LineSpawner : MonoBehaviour
 
     private void OnMouseDown()
     {
-        var agent = GameManager.instance.agentChooser.agentFactory.Create();
+        var agent = GameManager.instance.agentChooser.agentFactory.Create(SpawnPoint.position);
         GameManager.instance.pointsManager.ReducePoints(agent.cost);
-
-        var game_unit = GameObject.Instantiate(agent, SpawnPoint.position, SpawnPoint.rotation, transform);
 
         Debug.Log("click line");
     }
