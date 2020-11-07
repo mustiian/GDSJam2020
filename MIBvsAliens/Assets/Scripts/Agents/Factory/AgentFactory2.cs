@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-public class AgentFactory2 : IAgentFactory
+public class AgentFactory2 : MonoBehaviour, IAgentFactory
 {
     public BaseAgent Create()
     {

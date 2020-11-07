@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public AgentChooser agentChooser;
+    [HideInInspector]public AgentChooser agentChooser;
     [HideInInspector]public PointsManager pointsManager;
 
     public static GameManager instance;
@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        agentChooser = new AgentChooser();
+        agentChooser = FindObjectOfType<AgentChooser>();
         pointsManager = FindObjectOfType<PointsManager>();
     }
 

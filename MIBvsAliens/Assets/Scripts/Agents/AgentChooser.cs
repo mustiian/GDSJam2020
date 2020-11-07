@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AgentChooser
+public class AgentChooser : MonoBehaviour
 {
     public Button buttonAgent1;
     public Button buttonAgent2;
@@ -11,11 +11,11 @@ public class AgentChooser
     public IAgentFactory agentFactory;
     void Start()
     {
-        buttonAgent1.onClick.AddListener(() => ChangeCurrentAgentType(new AgentFactory1()));
-        buttonAgent1.onClick.AddListener(() => ChangeCurrentAgentType(new AgentFactory2()));
+        buttonAgent1.onClick.AddListener(() => ChangeCurrentAgentFactory(gameObject.AddComponent<AgentFactory1>()));
+        buttonAgent2.onClick.AddListener(() => ChangeCurrentAgentFactory(gameObject.AddComponent<AgentFactory2>()));
     }
     
-    void ChangeCurrentAgentType(IAgentFactory newAgentFactory)
+    void ChangeCurrentAgentFactory(IAgentFactory newAgentFactory)
     {
         Debug.Log("Agent changed");
         agentFactory = newAgentFactory;
