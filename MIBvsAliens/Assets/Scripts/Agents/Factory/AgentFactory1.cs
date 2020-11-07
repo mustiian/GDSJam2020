@@ -3,21 +3,17 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class AgentFactory1 : IAgentFactory
+public class AgentFactory1 : MonoBehaviour, IAgentFactory
 {
+    private Agent1 agent;
+
     public BaseAgent Create()
     {
-        throw new NotImplementedException();
+        return agent;
     }
     
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        agent = GetComponent<Agent1>();
     }
 }

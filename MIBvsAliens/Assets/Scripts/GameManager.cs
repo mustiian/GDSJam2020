@@ -4,10 +4,23 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private AgentChooser agentChooser;
+    public AgentChooser agentChooser;
+    [HideInInspector]public PointsManager pointsManager;
+
+    public static GameManager instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+    }
+
     void Start()
     {
         agentChooser = new AgentChooser();
+        pointsManager = FindObjectOfType<PointsManager>();
     }
 
     // Update is called once per frame

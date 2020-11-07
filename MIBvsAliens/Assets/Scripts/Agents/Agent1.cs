@@ -8,10 +8,4 @@ public class Agent1 : BaseAgent
     {
         type = AgentType.Type1;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

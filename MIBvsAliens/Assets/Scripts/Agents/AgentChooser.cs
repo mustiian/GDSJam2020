@@ -17,6 +17,7 @@ public class AgentChooser
     
     void ChangeCurrentAgentType(IAgentFactory newAgentFactory)
     {
+        Debug.Log("Agent changed");
         agentFactory = newAgentFactory;
     }
 
