@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class BaseCreature : MonoBehaviour
 {
@@ -15,12 +16,12 @@ public class BaseCreature : MonoBehaviour
     
     public void PlayAttackAnimation()
     {
-        animator.Play("Attack", 0);
+        animator.Play("Attack");
     }
     
     public void PlayDeathAnimation()
     { 
-        animator.Play("Death", 0);
+        animator.Play("Death");
     }
 
 }
