@@ -24,6 +24,10 @@ public class Fight : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         var otherCreature = other.GetComponent<BaseCreature>();
+        
+        if (otherCreature == null)
+            return;
+        
         if (otherCreature.race == _fightingCreature.race)
             return;
         
@@ -51,6 +55,7 @@ public class Fight : MonoBehaviour
             if (_currentEnemy.Alive())
             {
                 _fightingCreature.state = State.Fighting;
+                _fightingCreature.PlayAttackAnimation();
                 Debug.Log(_fightingCreature.race.ToString("F") + "start fighting");
             }
                 
@@ -60,6 +65,7 @@ public class Fight : MonoBehaviour
         else
         {
             _fightingCreature.state = State.Moving;
+            _fightingCreature.PlayMoveAnimation();
         }
     }
 
@@ -94,6 +100,7 @@ public class Fight : MonoBehaviour
         if (!Alive())
         {
             _fightingCreature.state = State.Dying;
+            _fightingCreature.PlayDeathAnimation();
             OnDied(EventArgs.Empty);
             return true;
         }
