@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 5378491769549971167}
   - component: {fileID: 5599674385416671402}
   - component: {fileID: 4466123099255377580}
+  - component: {fileID: -7951330873427606085}
   m_Layer: 0
   m_Name: Agent4_2
   m_TagString: Untagged
@@ -268,6 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a3aa01e8e3223488d821b6d98b59e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   cost: 4
   state: 0
   race: 0
@@ -360,6 +362,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.5, y: 16}
   m_EdgeRadius: 0
+--- !u!210 &-7951330873427606085
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4295478058009432357}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 5
 --- !u!1 &5664597343248160314
 GameObject:
   m_ObjectHideFlags: 0
