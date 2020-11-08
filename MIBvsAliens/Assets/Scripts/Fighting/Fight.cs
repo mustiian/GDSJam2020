@@ -26,7 +26,10 @@ public class Fight : MonoBehaviour
     {
         if (!Alive())
             return;
-            
+
+        if (_fightingCreature.state == State.MovingBack)
+            return;
+
         if (other.TryGetComponent<BaseCreature>(out var otherCreature))
         {
             if (otherCreature.race == _fightingCreature.race)
@@ -40,15 +43,16 @@ public class Fight : MonoBehaviour
                 ChangeToNextEnemy();
             }
         }
-        
-
     }
     
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!Alive())
             return;
-        
+
+        if (_fightingCreature.state == State.MovingBack)
+            return;
+
         if (_enemiesToFight.Count == 0)
         {
             _fightingCreature.state = State.Moving;

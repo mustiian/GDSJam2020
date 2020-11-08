@@ -26,6 +26,15 @@ public class PointsManager : MonoBehaviour
             var fight = creature.GetComponent<Fight>();
             fight.Died -= AddPoints;
         }
+
+        if (sender is BaseAlien alien)
+        {
+            if (alien.HasCow)
+            {
+                alien.HasCow = false;
+                GameManager.instance.cowsManager.DropCow();
+            }
+        }
     }
 
     public bool HasRequiredPoints(int value) => Points - value >= 0 ? true : false;
