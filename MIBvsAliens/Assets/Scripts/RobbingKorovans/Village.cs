@@ -7,6 +7,6 @@ public class Village : MonoBehaviour
 {
     private void Start()
     {
-        GetComponent<BoxCollider>().isTrigger = true;
+        GetComponent<BoxCollider2D>().isTrigger = true;
     }
 }
