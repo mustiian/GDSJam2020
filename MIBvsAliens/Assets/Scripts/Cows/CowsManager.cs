@@ -17,7 +17,7 @@ public class CowsManager : MonoBehaviour
 
     public void PickupCow()
     {
-        if (CowsNumber > 0)
+        if (CowsNumber >= 0)
         {
             CowsNumber--;
         } else

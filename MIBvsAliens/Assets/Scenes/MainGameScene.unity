@@ -2954,6 +2954,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CowsNumber: 3
   text: {fileID: 748152672}
+  CowPrefab: {fileID: 2646113428999876506, guid: fabf8ebf8f23d134ca057a3fec235a77,
+    type: 3}
 --- !u!1 &1106022376
 GameObject:
   m_ObjectHideFlags: 0
