@@ -9,6 +9,11 @@ public class BaseCreature : MonoBehaviour
     public State state;
     public Race race;
 
+    private void Awake()
+    {
+        animator = gameObject.GetComponentInChildren<Animator>();
+    }
+
     public void PlayMoveAnimation()
     {
         animator.Play("Walk");
