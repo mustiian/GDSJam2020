@@ -14,6 +14,7 @@ public class Fight : MonoBehaviour
     private BaseCreature _fightingCreature;
     private Fight _currentEnemy;
     private readonly Queue<Fight> _enemiesToFight = new Queue<Fight>();
+    
     void Start()
     {
         _health = gameObject.GetComponent<Health>();
@@ -23,6 +24,10 @@ public class Fight : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         var otherCreature = other.GetComponent<BaseCreature>();
+        
+        if (otherCreature == null)
+            return;
+        
         if (otherCreature.race == _fightingCreature.race)
             return;
         
@@ -31,6 +36,14 @@ public class Fight : MonoBehaviour
         if (_fightingCreature.state != State.Fighting)
         {
             ChangeToNextEnemy();
+        }
+    }
+    
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (_enemiesToFight.Count == 0)
+        {
+            _fightingCreature.state = State.Moving;
         }
     }
 
@@ -42,6 +55,7 @@ public class Fight : MonoBehaviour
             if (_currentEnemy.Alive())
             {
                 _fightingCreature.state = State.Fighting;
+                _fightingCreature.PlayAttackAnimation();
                 Debug.Log(_fightingCreature.race.ToString("F") + "start fighting");
             }
                 
@@ -51,6 +65,7 @@ public class Fight : MonoBehaviour
         else
         {
             _fightingCreature.state = State.Moving;
+            _fightingCreature.PlayMoveAnimation();
         }
     }
 
@@ -85,6 +100,7 @@ public class Fight : MonoBehaviour
         if (!Alive())
         {
             _fightingCreature.state = State.Dying;
+            _fightingCreature.PlayDeathAnimation();
             OnDied(EventArgs.Empty);
             return true;
         }

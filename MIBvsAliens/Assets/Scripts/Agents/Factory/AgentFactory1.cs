@@ -12,8 +12,9 @@ public class AgentFactory1 : MonoBehaviour, IAgentFactory
         {
             var gameObject = Instantiate(prefab, startPosition, Quaternion.identity);
             var movement = gameObject.GetComponent<Movement>();
-            //movement.SetStartPosition(startPosition); for aliens to go back with a cow
+            movement.SetStartPosition(startPosition);
             movement.SetDestination(endPosition);
+            agent.PlayMoveAnimation();
             return agent;
         }
         else return null;

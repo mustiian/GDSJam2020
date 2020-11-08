@@ -33,7 +33,7 @@ public class Movement : MonoBehaviour
 
     public void SetDestination(Vector3 endPosition)
     {
-        _destination = endPosition;
+        _destination = new Vector3(endPosition.x, _startPosition.y);
     }
     
     public void SetStartPosition(Vector3 startPosition)
