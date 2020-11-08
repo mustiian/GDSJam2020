@@ -23,6 +23,9 @@ public class Fight : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (!Alive())
+            return;
+            
         var otherCreature = other.GetComponent<BaseCreature>();
         
         if (otherCreature == null)
@@ -41,6 +44,9 @@ public class Fight : MonoBehaviour
     
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (!Alive())
+            return;
+        
         if (_enemiesToFight.Count == 0)
         {
             _fightingCreature.state = State.Moving;
@@ -78,6 +84,12 @@ public class Fight : MonoBehaviour
     private float _sinceLastAttack = 0;
     private void FixedUpdate()
     {
+        if (!Alive())
+            return;
+        
+        if (_fightingCreature.state != State.Fighting)
+            return;
+        
         _sinceLastAttack += Time.fixedDeltaTime;
         if (_sinceLastAttack < attackSpeed)
             return;
@@ -99,6 +111,7 @@ public class Fight : MonoBehaviour
         _health.current -= damageToDeal;
         if (!Alive())
         {
+            Debug.Log("Dead");
             _fightingCreature.state = State.Dying;
             _fightingCreature.PlayDeathAnimation();
             OnDied(EventArgs.Empty);

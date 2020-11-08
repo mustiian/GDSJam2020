@@ -17,17 +17,20 @@ public class BaseCreature : MonoBehaviour
 
     public void PlayMoveAnimation()
     {
-        animator.Play("Walk");
+        if (state == State.Moving || state == State.MovingBack)
+            animator.Play("Walk");
     }
     
     public void PlayAttackAnimation()
     {
-        animator.Play("Attack");
+        if (state == State.Fighting)
+            animator.Play("Attack");
     }
     
     public void PlayDeathAnimation()
     { 
-        animator.Play("Death");
+        if (state == State.Dying)
+            animator.Play("Death");
     }
 
 }
