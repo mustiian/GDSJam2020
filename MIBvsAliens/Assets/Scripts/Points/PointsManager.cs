@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -14,6 +15,16 @@ public class PointsManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(AutomaticallyIncrease(AutomaticIncreasePoints, AutomaticIncreaseDelay));
+    }
+
+    public void AddPoints(object sender, EventArgs args)
+    {
+        if (sender is BaseCreature creature)
+        {
+            Points += creature.cost;
+            var fight = creature.GetComponent<Fight>();
+            fight.Died -= AddPoints;
+        }
     }
 
     public bool HasRequiredPoints(int value) => Points - value >= 0 ? true : false;

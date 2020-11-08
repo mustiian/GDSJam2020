@@ -5,8 +5,10 @@ using UnityEngine;
 public class Fight : MonoBehaviour
 {
     public event EventHandler Died;
+    public event EventHandler AfterAnimationDied;
     
     public int damage = 1;
+    public float attackSpeed = 1;
     
     private Health _health;
     private BaseCreature _fightingCreature;
@@ -57,12 +59,18 @@ public class Fight : MonoBehaviour
         return _health.current > 0;
     }
 
+    private float _sinceLastAttack = 0;
     private void FixedUpdate()
     {
+        _sinceLastAttack += Time.fixedDeltaTime;
+        if (_sinceLastAttack < attackSpeed)
+            return;
+        
         if (_currentEnemy != null && _currentEnemy.Alive())
         {
             var damageToDeal = Time.fixedDeltaTime * damage;
             bool isDead = _currentEnemy.Hit(damageToDeal);
+            _sinceLastAttack = 0;
             if (isDead)
             {
                 //TODO: if player - get points. Somehow deal with multiple reward if more than 2 characters killed the enemy 
@@ -84,10 +92,17 @@ public class Fight : MonoBehaviour
         return false;
     }
     
+    protected void OnAfterAnimationDied(EventArgs e)
+    {
+        Debug.Log(_fightingCreature.race.ToString("F") + "is dead");
+        EventHandler handler = Died;
+        handler?.Invoke(_fightingCreature, e);
+    }
+    
     protected void OnDied(EventArgs e)
     {
         Debug.Log(_fightingCreature.race.ToString("F") + "is dead");
         EventHandler handler = Died;
-        handler?.Invoke(this, e);
+        handler?.Invoke(_fightingCreature, e);
     }
 }
