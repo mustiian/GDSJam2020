@@ -32,7 +32,7 @@ public class WavesController : MonoBehaviour
             {
                 currentWave = wave.GetNextWave();
                 currentWave.OnFinishWave += FinishLine;
-                currentWave.ActivateWave(wave.SpawnPoint.position);
+                currentWave.ActivateWave(wave.SpawnPoint.position, wave.EndPoint.position);
             }
             else
                 finishedCollections++;

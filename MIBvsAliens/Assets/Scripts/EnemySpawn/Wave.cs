@@ -16,19 +16,26 @@ public class Wave : MonoBehaviour
 
     private int _offsetCount = 0;
 
-    public void ActivateWave(Vector3 spawnPoint)
+    public void ActivateWave(Vector3 spawnPoint, Vector3 endPoint)
     {
-        StartCoroutine(InitEnemies(spawnPoint));
+        StartCoroutine(InitEnemies(spawnPoint, endPoint));
     }
 
-    private IEnumerator InitEnemies(Vector3 position)
+    private IEnumerator InitEnemies(Vector3 startPosition, Vector3 endPosition)
     {
         foreach (var enemy in Enemies)
         {
-            GameObject.Instantiate(enemy, new Vector2(position.x, position.y + _yOffset), Quaternion.identity);
+            Vector2 start = new Vector2(startPosition.x, startPosition.y + _yOffset);
+            GameObject.Instantiate(enemy, start, Quaternion.identity);
             if (enemy.TryGetComponent(out Fight fight)){
                 fight.Died += EnemyDie;
                 fight.AfterAnimationDied += GameManager.instance.pointsManager.AddPoints;
+            }
+
+            if (enemy.TryGetComponent(out Movement movement))
+            {
+                movement.SetStartPosition(start);
+                movement.SetDestination(endPosition);
             }
 
             GenerateNewOffset();

@@ -5,6 +5,7 @@ using UnityEngine;
 public class WavesCollection : MonoBehaviour
 {
     public Transform SpawnPoint;
+    public Transform EndPoint;
 
     public Wave[] Waves;
 
