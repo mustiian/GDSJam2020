@@ -26,20 +26,21 @@ public class Fight : MonoBehaviour
         if (!Alive())
             return;
             
-        var otherCreature = other.GetComponent<BaseCreature>();
-        
-        if (otherCreature == null)
-            return;
-        
-        if (otherCreature.race == _fightingCreature.race)
-            return;
-        
-        var otherFight = other.GetComponent<Fight>();
-        _enemiesToFight.Enqueue(otherFight);
-        if (_fightingCreature.state != State.Fighting)
+        if (other.TryGetComponent<BaseCreature>(out var otherCreature))
         {
-            ChangeToNextEnemy();
+            if (otherCreature.race == _fightingCreature.race)
+                return;
+
+            Debug.Log($"{_fightingCreature.race:F} detected {otherCreature.race:F}");
+            var otherFight = other.GetComponent<Fight>();
+            _enemiesToFight.Enqueue(otherFight);
+            if (_fightingCreature.state != State.Fighting)
+            {
+                ChangeToNextEnemy();
+            }
         }
+        
+
     }
     
     private void OnTriggerExit2D(Collider2D other)
@@ -63,11 +64,13 @@ public class Fight : MonoBehaviour
             {
                 _fightingCreature.state = State.Fighting;
                 _fightingCreature.PlayAttackAnimation();
-                Debug.Log(_fightingCreature.race.ToString("F") + "start fighting");
+            }
+            else
+            {
+                _currentEnemy = null;
+                ChangeToNextEnemy();
             }
                 
-            else
-                ChangeToNextEnemy();
         }
         else
         {

@@ -8,7 +8,7 @@ public class LineSpawner : MonoBehaviour
 {
     public Transform SpawnPoint;
     public Transform EndPoint;
-    private float _yOffset = -0.6f;
+    private float _yOffset = -0.2f;
 
     private void OnMouseDown()
     {
@@ -24,14 +24,14 @@ public class LineSpawner : MonoBehaviour
     private int _offsetCount = 0;
     private void GenerateNewOffset()
     {
-        if (_offsetCount < 4)
+        if (_offsetCount < 3)
         {
-            _yOffset += 0.3f;
+            _yOffset += 0.2f;
             _offsetCount++;
         }
         else
         {
-            _yOffset = -0.6f;
+            _yOffset = -0.2f;
             _offsetCount = 0;
         }
 
