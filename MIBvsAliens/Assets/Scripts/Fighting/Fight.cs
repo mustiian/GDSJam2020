@@ -14,6 +14,7 @@ public class Fight : MonoBehaviour
     private BaseCreature _fightingCreature;
     private Fight _currentEnemy;
     private readonly Queue<Fight> _enemiesToFight = new Queue<Fight>();
+    
     void Start()
     {
         _health = gameObject.GetComponent<Health>();
@@ -31,6 +32,14 @@ public class Fight : MonoBehaviour
         if (_fightingCreature.state != State.Fighting)
         {
             ChangeToNextEnemy();
+        }
+    }
+    
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (_enemiesToFight.Count == 0)
+        {
+            _fightingCreature.state = State.Moving;
         }
     }
 
