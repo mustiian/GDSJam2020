@@ -32,8 +32,8 @@ public class Wave : MonoBehaviour
             enemies.Add(gameEnemy);
 
             if (gameEnemy.TryGetComponent(out Fight fight)){
-                fight.Died += EnemyDie;
-                fight.AfterAnimationDied += GameManager.instance.pointsManager.AddPoints;
+                fight.Died += GameManager.instance.pointsManager.AddPoints;
+                fight.AfterAnimationDied += EnemyDie;
             }
 
             if (gameEnemy.TryGetComponent(out Movement movement))
@@ -59,6 +59,8 @@ public class Wave : MonoBehaviour
             {
                 fight.Died -= EnemyDie;
             }
+
+            Destroy(creature.gameObject);
 
             if (enemies.Count == 0)
                 OnFinishWave?.Invoke(this);
