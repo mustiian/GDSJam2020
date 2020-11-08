@@ -16,6 +16,8 @@ public class Wave : MonoBehaviour
 
     private int _offsetCount = 0;
 
+    private List<GameObject> enemies = new List<GameObject>();
+
     public void ActivateWave(Vector3 spawnPoint, Vector3 endPoint)
     {
         StartCoroutine(InitEnemies(spawnPoint, endPoint));
@@ -26,13 +28,15 @@ public class Wave : MonoBehaviour
         foreach (var enemy in Enemies)
         {
             Vector2 start = new Vector2(startPosition.x, startPosition.y + _yOffset);
-            GameObject.Instantiate(enemy, start, Quaternion.identity);
-            if (enemy.TryGetComponent(out Fight fight)){
+            var gameEnemy = GameObject.Instantiate(enemy, start, Quaternion.identity);
+            enemies.Add(gameEnemy);
+
+            if (gameEnemy.TryGetComponent(out Fight fight)){
                 fight.Died += EnemyDie;
                 fight.AfterAnimationDied += GameManager.instance.pointsManager.AddPoints;
             }
 
-            if (enemy.TryGetComponent(out Movement movement))
+            if (gameEnemy.TryGetComponent(out Movement movement))
             {
                 movement.SetStartPosition(start);
                 movement.SetDestination(endPosition);
@@ -49,14 +53,14 @@ public class Wave : MonoBehaviour
     {
         if (sender is BaseCreature creature)
         {
-            Enemies = Enemies.Where(enemy => enemy != creature.gameObject).ToArray();
+            enemies.Remove(creature.gameObject);
 
             if (creature.TryGetComponent(out Fight fight))
             {
                 fight.Died -= EnemyDie;
             }
 
-            if (Enemies.Length == 0)
+            if (enemies.Count == 0)
                 OnFinishWave?.Invoke(this);
         }
     }
