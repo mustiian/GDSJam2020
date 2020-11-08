@@ -13,6 +13,9 @@ public class BaseAlien : BaseCreature
 
         if (collision.TryGetComponent(out Village creature))
         {
+            var transform = gameObject.GetComponent<Transform>();
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y);
+            
             HasCow = true;
             state = State.MovingBack;
             GameManager.instance.cowsManager.PickupCow();

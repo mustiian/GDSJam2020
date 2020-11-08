@@ -4,6 +4,7 @@
 public class Movement : MonoBehaviour
 {
     public float speed = 1;
+    public float speedBackMultiplayer = 2;
     
     private Transform _transform;
     private Vector3 _destination;
@@ -25,9 +26,8 @@ public class Movement : MonoBehaviour
         }
         else if (_creatureToMove.state == State.MovingBack) // aliens only
         {
-            float step = speed * Time.fixedDeltaTime;
+            float step = speed * Time.fixedDeltaTime * speedBackMultiplayer;
             _transform.position = Vector3.MoveTowards(_transform.position, _startPosition, step);
-            //if the alien reached their spaceship with a cow
         }
     }
 

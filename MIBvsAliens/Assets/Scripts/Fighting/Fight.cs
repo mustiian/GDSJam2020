@@ -58,6 +58,10 @@ public class Fight : MonoBehaviour
             _fightingCreature.state = State.Moving;
             _fightingCreature.PlayMoveAnimation();
         }
+        else
+        {
+            _enemiesToFight.Clear();
+        }
     }
 
     private void ChangeToNextEnemy()
@@ -85,7 +89,7 @@ public class Fight : MonoBehaviour
 
     private bool Alive()
     {
-        return _health.current > 0;
+        return _health.current >= 0;
     }
 
     private float _sinceLastAttack = 0;
@@ -103,7 +107,7 @@ public class Fight : MonoBehaviour
         
         if (_currentEnemy != null && _currentEnemy.Alive())
         {
-            var damageToDeal = Time.fixedDeltaTime * damage;
+            var damageToDeal = damage;
             _currentEnemy.Hit(damageToDeal);
             _sinceLastAttack = 0;
         }
