@@ -69,8 +69,7 @@ public class Fight : MonoBehaviour
             {
                 _currentEnemy = null;
                 ChangeToNextEnemy();
-            }
-                
+            } 
         }
         else
         {
@@ -89,10 +88,10 @@ public class Fight : MonoBehaviour
     {
         if (!Alive())
             return;
-        
+
         if (_fightingCreature.state != State.Fighting)
             return;
-        
+
         _sinceLastAttack += Time.fixedDeltaTime;
         if (_sinceLastAttack < attackSpeed)
             return;
@@ -100,12 +99,13 @@ public class Fight : MonoBehaviour
         if (_currentEnemy != null && _currentEnemy.Alive())
         {
             var damageToDeal = Time.fixedDeltaTime * damage;
-            bool isDead = _currentEnemy.Hit(damageToDeal);
+            _currentEnemy.Hit(damageToDeal);
             _sinceLastAttack = 0;
-            if (isDead)
-            {
-                ChangeToNextEnemy();
-            }
+        }
+        
+        if (!_currentEnemy.Alive())
+        {
+            ChangeToNextEnemy();
         }
     }
 
