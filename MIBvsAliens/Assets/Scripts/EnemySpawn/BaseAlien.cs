@@ -9,6 +9,7 @@ public class BaseAlien : BaseCreature
         if (collision.TryGetComponent(out Village creature))
         {
             state = State.MovingBack;
+            GameManager.instance.cowsManager.PickupCow();
         }
     }
 }

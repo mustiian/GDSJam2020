@@ -6,7 +6,8 @@ public class GameManager : MonoBehaviour
 {
     [HideInInspector]public AgentChooser agentChooser;
     [HideInInspector]public PointsManager pointsManager;
-
+    [HideInInspector] public CowsManager cowsManager;
+    
     public static GameManager instance;
 
     private void Awake()
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     {
         agentChooser = FindObjectOfType<AgentChooser>();
         pointsManager = FindObjectOfType<PointsManager>();
+        cowsManager = GetComponent<CowsManager>();
     }
 
     // Update is called once per frame

@@ -1,11 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
     private WavesController controller;
+
+    public static LevelManager instance;
+
+    public Image panelWin;
+    public Image panelLose;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +30,19 @@ public class LevelManager : MonoBehaviour
 
     public void WavesFinished(WavesController controller)
     {
-        // TODO
+        Time.timeScale = 0;
+        panelWin.gameObject.SetActive(true);
+    }
+
+    public void CowsEnded(CowsManager controller)
+    {
+        Time.timeScale = 0;
+        panelLose.gameObject.SetActive(true);
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void StartNextLevel()

@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class AgentFactory4 : MonoBehaviour, IAgentFactory
 {
-    public GameObject prefab;
+    public GameObject[] prefab;
 
     public BaseAgent Create(Vector3 position, Vector3 endPosition)
     {
-        Agent1 agent = prefab.GetComponent<Agent1>();
+        Agent1 agent = prefab[1].GetComponent<Agent1>();
 
         if (GameManager.instance.pointsManager.HasRequiredPoints(agent.cost))
         {
-            var gameObject = Instantiate(prefab, position, Quaternion.identity);
+            int index = Random.Range(0, prefab.Length);
+
+            var gameObject = Instantiate(prefab[index], position, Quaternion.identity);
             var movement = gameObject.GetComponent<Movement>();
             movement.SetStartPosition(position);
             movement.SetDestination(endPosition);
