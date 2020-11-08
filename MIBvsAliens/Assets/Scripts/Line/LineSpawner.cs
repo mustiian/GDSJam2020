@@ -18,7 +18,7 @@ public class LineSpawner : MonoBehaviour
         GenerateNewOffset();
         if (!agent)
             return;
-        //GameManager.instance.pointsManager.ReducePoints(agent.cost);
+        GameManager.instance.pointsManager.ReducePoints(agent.cost);
     }
 
     private int _offsetCount = 0;
