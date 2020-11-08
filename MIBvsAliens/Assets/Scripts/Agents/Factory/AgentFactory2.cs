@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class AgentFactory2 : MonoBehaviour, IAgentFactory
 {
+    public GameObject prefab;
+
     public BaseAgent Create(Vector3 position, Vector3 endPosition)
     {
-        throw new NotImplementedException();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+        Agent1 agent = prefab.GetComponent<Agent1>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (GameManager.instance.pointsManager.HasRequiredPoints(agent.cost))
+        {
+            var gameObject = Instantiate(prefab, position, Quaternion.identity);
+            var movement = gameObject.GetComponent<Movement>();
+            movement.SetStartPosition(position);
+            movement.SetDestination(endPosition);
+            return agent;
+        }
+        else return null;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,23 +24,35 @@ public class Fight : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        var otherCreature = other.GetComponent<BaseCreature>();
-        if (otherCreature.race == _fightingCreature.race)
+        if (!Alive())
             return;
-        
-        var otherFight = other.GetComponent<Fight>();
-        _enemiesToFight.Enqueue(otherFight);
-        if (_fightingCreature.state != State.Fighting)
+            
+        if (other.TryGetComponent<BaseCreature>(out var otherCreature))
         {
-            ChangeToNextEnemy();
+            if (otherCreature.race == _fightingCreature.race)
+                return;
+
+            Debug.Log($"{_fightingCreature.race:F} detected {otherCreature.race:F}");
+            var otherFight = other.GetComponent<Fight>();
+            _enemiesToFight.Enqueue(otherFight);
+            if (_fightingCreature.state != State.Fighting)
+            {
+                ChangeToNextEnemy();
+            }
         }
+        
+
     }
     
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (!Alive())
+            return;
+        
         if (_enemiesToFight.Count == 0)
         {
             _fightingCreature.state = State.Moving;
+            _fightingCreature.PlayMoveAnimation();
         }
     }
 
@@ -51,15 +64,18 @@ public class Fight : MonoBehaviour
             if (_currentEnemy.Alive())
             {
                 _fightingCreature.state = State.Fighting;
-                Debug.Log(_fightingCreature.race.ToString("F") + "start fighting");
+                _fightingCreature.PlayAttackAnimation();
             }
-                
             else
+            {
+                _currentEnemy = null;
                 ChangeToNextEnemy();
+            } 
         }
         else
         {
             _fightingCreature.state = State.Moving;
+            _fightingCreature.PlayMoveAnimation();
         }
     }
 
@@ -71,6 +87,12 @@ public class Fight : MonoBehaviour
     private float _sinceLastAttack = 0;
     private void FixedUpdate()
     {
+        if (!Alive())
+            return;
+
+        if (_fightingCreature.state != State.Fighting)
+            return;
+
         _sinceLastAttack += Time.fixedDeltaTime;
         if (_sinceLastAttack < attackSpeed)
             return;
@@ -78,13 +100,13 @@ public class Fight : MonoBehaviour
         if (_currentEnemy != null && _currentEnemy.Alive())
         {
             var damageToDeal = Time.fixedDeltaTime * damage;
-            bool isDead = _currentEnemy.Hit(damageToDeal);
+            _currentEnemy.Hit(damageToDeal);
             _sinceLastAttack = 0;
-            if (isDead)
-            {
-                //TODO: if player - get points. Somehow deal with multiple reward if more than 2 characters killed the enemy 
-                ChangeToNextEnemy();
-            }
+        }
+        
+        if (!_currentEnemy.Alive())
+        {
+            ChangeToNextEnemy();
         }
     }
 
@@ -93,18 +115,27 @@ public class Fight : MonoBehaviour
         _health.current -= damageToDeal;
         if (!Alive())
         {
+            Debug.Log("Dead");
             _fightingCreature.state = State.Dying;
             OnDied(EventArgs.Empty);
+            StartCoroutine(StartAnimationDeath());
             return true;
         }
 
         return false;
     }
-    
+
+    private IEnumerator StartAnimationDeath()
+    {
+        var animationLength = _fightingCreature.PlayDeathAnimation();
+        yield return new WaitForSeconds(animationLength);
+        OnAfterAnimationDied(EventArgs.Empty);
+    }
+
     protected void OnAfterAnimationDied(EventArgs e)
     {
         Debug.Log(_fightingCreature.race.ToString("F") + "is dead");
-        EventHandler handler = Died;
+        EventHandler handler = AfterAnimationDied;
         handler?.Invoke(_fightingCreature, e);
     }
     
