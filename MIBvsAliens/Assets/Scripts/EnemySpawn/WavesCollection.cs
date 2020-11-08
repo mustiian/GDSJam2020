@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WavesCollection : MonoBehaviour
 {
-    public Vector3 SpawnPoint;
+    public Transform SpawnPoint;
 
     public Wave[] Waves;
 

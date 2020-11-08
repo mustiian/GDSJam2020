@@ -21,7 +21,7 @@ public class PointsManager : MonoBehaviour
     {
         if (sender is BaseCreature creature)
         {
-            Points += creature.cost;
+            IncreasePoints(creature.cost);
             var fight = creature.GetComponent<Fight>();
             fight.Died -= AddPoints;
         }

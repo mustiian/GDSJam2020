@@ -5,7 +5,7 @@ using System;
 
 public class WavesController : MonoBehaviour
 {
-    public WavesCollection[] Waves;
+    public WavesCollection[] WavesCollections;
 
     public Action<WavesController> OnFinishWaves;
     public Action<WavesController> OnChangeWaves;
@@ -18,7 +18,7 @@ public class WavesController : MonoBehaviour
 
     void Start()
     {
-        StartNextWave();
+        //StartNextWave();
     }
 
     public void StartNextWave()
@@ -26,19 +26,19 @@ public class WavesController : MonoBehaviour
         finishedLines = 0;
         int finishedCollections = 0;
         Wave currentWave;
-        foreach (var wave in Waves)
+        foreach (var wave in WavesCollections)
         {
             if (wave.NextWaveExist())
             {
                 currentWave = wave.GetNextWave();
                 currentWave.OnFinishWave += FinishLine;
-                currentWave.ActivateWave(wave.SpawnPoint);
+                currentWave.ActivateWave(wave.SpawnPoint.position);
             }
             else
                 finishedCollections++;
         }
 
-        if (finishedCollections == Waves.Length)
+        if (finishedCollections == WavesCollections.Length)
             OnFinishWaves?.Invoke(this);
     }
 
@@ -46,7 +46,7 @@ public class WavesController : MonoBehaviour
     {
         finishedLines++;
 
-        if (finishedLines == Waves.Length)
+        if (finishedLines == WavesCollections.Length)
         {
             OnChangeWaves?.Invoke(this);
             StartNextWave();
