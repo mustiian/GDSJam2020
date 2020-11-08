@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public class WavesController : MonoBehaviour
 {
@@ -37,12 +38,6 @@ public class WavesController : MonoBehaviour
             else
                 finishedCollections++;
         }
-
-        if (finishedCollections == WavesCollections.Length)
-            OnFinishWaves?.Invoke(this);
-        else
-            OnChangeWaves?.Invoke(this);
-
     }
 
     public void FinishLine(Wave wave)
@@ -50,6 +45,27 @@ public class WavesController : MonoBehaviour
         finishedLines++;
 
         if (finishedLines == WavesCollections.Length)
-            StartNextWave();
+        {
+            if (!CanStartNextWave())
+            {
+                OnFinishWaves?.Invoke(this);
+            }
+            else
+            {
+                StartNextWave();
+                OnChangeWaves?.Invoke(this);
+            }
+        }
+    }
+
+    public bool CanStartNextWave()
+    {
+        foreach (var wave in WavesCollections)
+        {
+            if (wave.NextWaveExist())
+                return true;
+        }
+
+        return false;
     }
 }

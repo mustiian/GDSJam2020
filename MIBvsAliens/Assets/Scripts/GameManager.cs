@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     {
         agentChooser = FindObjectOfType<AgentChooser>();
         pointsManager = FindObjectOfType<PointsManager>();
-        cowsManager = GetComponent<CowsManager>();
+        cowsManager = FindObjectOfType<CowsManager>();
     }
 
     // Update is called once per frame
