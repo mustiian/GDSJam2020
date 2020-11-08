@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseCreature : MonoBehaviour
@@ -27,10 +28,15 @@ public class BaseCreature : MonoBehaviour
             animator.Play("Attack");
     }
     
-    public void PlayDeathAnimation()
-    { 
+    public float PlayDeathAnimation()
+    {
         if (state == State.Dying)
+        {
             animator.Play("Death");
-    }
+            var currentAnimatorClipInfo = animator.GetCurrentAnimatorClipInfo(0);
+            return currentAnimatorClipInfo[0].clip.length;
+        }
 
+        return 0;
+    }
 }

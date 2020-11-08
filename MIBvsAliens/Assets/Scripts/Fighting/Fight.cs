@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -116,14 +117,21 @@ public class Fight : MonoBehaviour
         {
             Debug.Log("Dead");
             _fightingCreature.state = State.Dying;
-            _fightingCreature.PlayDeathAnimation();
             OnDied(EventArgs.Empty);
+            StartCoroutine(StartAnimationDeath());
             return true;
         }
 
         return false;
     }
-    
+
+    private IEnumerator StartAnimationDeath()
+    {
+        var animationLength = _fightingCreature.PlayDeathAnimation();
+        yield return new WaitForSeconds(animationLength);
+        OnAfterAnimationDied(EventArgs.Empty);
+    }
+
     protected void OnAfterAnimationDied(EventArgs e)
     {
         Debug.Log(_fightingCreature.race.ToString("F") + "is dead");
