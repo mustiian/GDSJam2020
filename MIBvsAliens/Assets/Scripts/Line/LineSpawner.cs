@@ -21,7 +21,7 @@ public class LineSpawner : MonoBehaviour
         if (!agent)
             return;
         GameManager.instance.pointsManager.ReducePoints(agent.cost);
-        agent.GetComponent<SortingGroup>().sortingLayerID = sortingLayer++;
+        agent.GetComponent<SortingGroup>().sortingOrder += sortingLayer;
     }
 
     private int _offsetCount = 0;

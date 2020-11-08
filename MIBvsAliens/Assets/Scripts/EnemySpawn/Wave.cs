@@ -45,7 +45,7 @@ public class Wave : MonoBehaviour
                 movement.SetDestination(endPosition);
             }
 
-            gameEnemy.GetComponent<SortingGroup>().sortingLayerID = sortingLayer++;
+            gameEnemy.GetComponent<SortingGroup>().sortingOrder += sortingLayer;
 
             GenerateNewOffset();
 
