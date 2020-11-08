@@ -8,6 +8,8 @@ public class CowsManager : MonoBehaviour
     public int CowsNumber;
     public Text text;
 
+    public GameObject CowPrefab;
+
     private void Start()
     {
         text.text = CowsNumber.ToString();
