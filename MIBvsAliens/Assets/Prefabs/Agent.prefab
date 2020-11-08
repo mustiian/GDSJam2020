@@ -267,9 +267,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a3aa01e8e3223488d821b6d98b59e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   cost: 4
   state: 0
-  race: 0
+  race: 1
   type: 0
 --- !u!114 &-2242617879250088693
 MonoBehaviour:
