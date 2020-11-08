@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  cost: 4
+  cost: 5
   state: 0
   race: 1
   type: 0
@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   max: 50
-  current: 50
+  current: 20
 --- !u!114 &5378491769549971167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054db195c7e3f9448a75c10edd6c8eb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 10
   attackSpeed: 1
 --- !u!50 &5599674385416671402
 Rigidbody2D:
