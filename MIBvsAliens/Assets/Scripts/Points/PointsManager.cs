@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class PointsManager : MonoBehaviour
 {
@@ -10,7 +10,7 @@ public class PointsManager : MonoBehaviour
     
     public int AutomaticPoints;
     public float AutomaticDelay;
-    public TextMeshProUGUI UIText;
+    public Text UIText;
 
     private void Start()
     {
