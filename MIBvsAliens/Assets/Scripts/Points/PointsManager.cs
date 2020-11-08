@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PointsManager : MonoBehaviour
 {
+    public AgentChooser agentChooser;
+    
     public int Points;
     
     public int AutomaticPoints;

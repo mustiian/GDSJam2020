@@ -2247,6 +2247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3f1bdc419c8f74fa7c9745b972cfd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agentChooser: {fileID: 1481874301}
   Points: 20
   AutomaticPoints: 1
   AutomaticDelay: 1
@@ -3351,10 +3352,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c50b2c2d4d446454a8ce97a812e041fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonAgent1: {fileID: 1536123913}
-  buttonAgent2: {fileID: 1411569631}
-  buttonAgent3: {fileID: 324531503}
-  buttonAgent4: {fileID: 453273855}
+  buttons:
+  - {fileID: 1536123913}
+  - {fileID: 1411569631}
+  - {fileID: 324531503}
+  - {fileID: 453273855}
 --- !u!1 &1482201590
 GameObject:
   m_ObjectHideFlags: 0

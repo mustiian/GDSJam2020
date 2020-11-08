@@ -5,18 +5,25 @@ using UnityEngine.UI;
 
 public class AgentChooser : MonoBehaviour
 {
-    public Button buttonAgent1;
-    public Button buttonAgent2;
-    public Button buttonAgent3;
-    public Button buttonAgent4;
+    public Button[] buttons;
 
     public IAgentFactory agentFactory;
     void Start()
     {
-        buttonAgent1.onClick.AddListener(() => ChangeCurrentAgentFactory(FindObjectOfType<AgentFactory1>()));
-        buttonAgent2.onClick.AddListener(() => ChangeCurrentAgentFactory(FindObjectOfType<AgentFactory2>()));
-        buttonAgent3.onClick.AddListener(() => ChangeCurrentAgentFactory(FindObjectOfType<AgentFactory3>()));
-        buttonAgent4.onClick.AddListener(() => ChangeCurrentAgentFactory(FindObjectOfType<AgentFactory4>()));
+        buttons[0].onClick.AddListener(() => ChangeCurrentAgentFactory(FindObjectOfType<AgentFactory1>()));
+        buttons[1].onClick.AddListener(() => ChangeCurrentAgentFactory(FindObjectOfType<AgentFactory2>()));
+        buttons[2].onClick.AddListener(() => ChangeCurrentAgentFactory(FindObjectOfType<AgentFactory3>()));
+        buttons[3].onClick.AddListener(() => ChangeCurrentAgentFactory(FindObjectOfType<AgentFactory4>()));
+    }
+
+    public void EnableButton(int i)
+    {
+        buttons[i].interactable = true;
+    }
+
+    public void DisableButton(int i)
+    {
+        buttons[i].interactable = false;
     }
     
     void ChangeCurrentAgentFactory(IAgentFactory newAgentFactory)

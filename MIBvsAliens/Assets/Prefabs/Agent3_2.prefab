@@ -271,7 +271,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   cost: 4
   state: 0
-  race: 0
+  race: 1
   type: 0
 --- !u!114 &-2242617879250088693
 MonoBehaviour:
