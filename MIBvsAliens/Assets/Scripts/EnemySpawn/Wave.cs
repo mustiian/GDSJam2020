@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using UnityEngine.Rendering;
 
 public class Wave : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class Wave : MonoBehaviour
     private int _offsetCount = 0;
 
     private List<GameObject> enemies = new List<GameObject>();
+
+    private int sortingLayer = 1;
 
     public void ActivateWave(Vector3 spawnPoint, Vector3 endPoint)
     {
@@ -41,6 +44,8 @@ public class Wave : MonoBehaviour
                 movement.SetStartPosition(start);
                 movement.SetDestination(endPosition);
             }
+
+            gameEnemy.GetComponent<SortingGroup>().sortingLayerID = sortingLayer++;
 
             GenerateNewOffset();
 

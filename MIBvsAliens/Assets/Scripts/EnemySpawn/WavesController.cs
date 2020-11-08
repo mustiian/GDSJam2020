@@ -40,6 +40,9 @@ public class WavesController : MonoBehaviour
 
         if (finishedCollections == WavesCollections.Length)
             OnFinishWaves?.Invoke(this);
+        else
+            OnChangeWaves?.Invoke(this);
+
     }
 
     public void FinishLine(Wave wave)
@@ -47,9 +50,6 @@ public class WavesController : MonoBehaviour
         finishedLines++;
 
         if (finishedLines == WavesCollections.Length)
-        {
-            OnChangeWaves?.Invoke(this);
             StartNextWave();
-        }
     }
 }

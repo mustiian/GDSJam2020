@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class LineSpawner : MonoBehaviour
@@ -9,6 +10,7 @@ public class LineSpawner : MonoBehaviour
     public Transform SpawnPoint;
     public Transform EndPoint;
     private float _yOffset = -0.2f;
+    private int sortingLayer = 1;
 
     private void OnMouseDown()
     {
@@ -19,6 +21,7 @@ public class LineSpawner : MonoBehaviour
         if (!agent)
             return;
         GameManager.instance.pointsManager.ReducePoints(agent.cost);
+        agent.GetComponent<SortingGroup>().sortingLayerID = sortingLayer++;
     }
 
     private int _offsetCount = 0;

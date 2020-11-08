@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -9,12 +10,16 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        controller.OnFinishWaves += WavesFinished;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void WavesFinished(WavesController controller)
     {
-        
+        // TODO
+    }
+
+    public void StartNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
