@@ -8,13 +8,13 @@ public class PointsManager : MonoBehaviour
 {
     public int Points;
     
-    public int AutomaticIncreasePoints;
-    public float AutomaticIncreaseDelay;
+    public int AutomaticPoints;
+    public float AutomaticDelay;
     public TextMeshProUGUI UIText;
 
     private void Start()
     {
-        StartCoroutine(AutomaticallyIncrease(AutomaticIncreasePoints, AutomaticIncreaseDelay));
+        StartCoroutine(AutomaticallyIncrease(AutomaticPoints, AutomaticDelay));
     }
 
     public void AddPoints(object sender, EventArgs args)
@@ -48,7 +48,7 @@ public class PointsManager : MonoBehaviour
     {
         while (true)
         {
-            Points += AutomaticIncreasePoints;
+            Points += AutomaticPoints;
             UIText.text = Points.ToString();
             yield return new WaitForSeconds(time);
         }

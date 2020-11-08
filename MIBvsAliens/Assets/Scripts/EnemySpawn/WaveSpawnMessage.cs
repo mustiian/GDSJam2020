@@ -11,16 +11,15 @@ public class WaveSpawnMessage : MonoBehaviour
     private TextMeshProUGUI text;
     private int waveNumber = 0;
     private WavesController controller;
-    private FaderController fader;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         text = GetComponentInChildren<TextMeshProUGUI>();
         controller = FindObjectOfType<WavesController>();
-        fader = GetComponent<FaderController>();
+        animator = GetComponent<Animator>();
         controller.OnChangeWaves += StartNextWave;
-        fader.SetPanel(panel);
 
         StartNextWave(controller);
     }
@@ -33,9 +32,9 @@ public class WaveSpawnMessage : MonoBehaviour
 
     private IEnumerator ActivateNextWave(float delay)
     {
-        fader.FadeInOut(delay / 2, panel.color, 1, panel.color, delay/2);
-
+        animator.Play("Appear");
         yield return new WaitForSeconds(delay);
+        animator.Play("Disappear");
 
         controller.StartNextWave();
     }
