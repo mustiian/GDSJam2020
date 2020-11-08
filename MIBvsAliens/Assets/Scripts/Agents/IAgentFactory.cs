@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IAgentFactory
 {
-    BaseAgent Create(Vector3 position);
+    BaseAgent Create(Vector3 position, Vector3 endPosition);
 }

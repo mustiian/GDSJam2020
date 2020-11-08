@@ -314,9 +314,9 @@ GameObject:
   - component: {fileID: 2402538597355263448}
   - component: {fileID: 5378491769549971167}
   - component: {fileID: -86295319450556938}
-  - component: {fileID: 5599674385416671402}
+  - component: {fileID: 9097262279433433284}
   m_Layer: 0
-  m_Name: Alien
+  m_Name: KidaHuman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 4
   state: 0
-  race: 0
+  race: 1
   type: 0
 --- !u!114 &-2242617879250088693
 MonoBehaviour:
@@ -365,7 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8d743894ff32834486c5a23499c8dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0
 --- !u!114 &2402538597355263448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,7 +409,7 @@ CircleCollider2D:
   m_Offset: {x: 1.5, y: 7.3}
   serializedVersion: 2
   m_Radius: 8
---- !u!50 &5599674385416671402
+--- !u!50 &9097262279433433284
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
