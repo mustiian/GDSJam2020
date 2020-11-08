@@ -16,6 +16,8 @@ public class BaseAlien : BaseCreature
             HasCow = true;
             state = State.MovingBack;
             GameManager.instance.cowsManager.PickupCow();
+            Vector2 pos = transform.position + new Vector3(0f, 0.7f, 0f);
+            GameObject.Instantiate(GameManager.instance.cowsManager.CowPrefab, pos, Quaternion.identity, transform);
         }
     }
 }
