@@ -8,6 +8,9 @@ public class BaseAlien : BaseCreature
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (HasCow)
+            return;
+
         if (collision.TryGetComponent(out Village creature))
         {
             HasCow = true;
