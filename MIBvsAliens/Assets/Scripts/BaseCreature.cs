@@ -12,6 +12,7 @@ public class BaseCreature : MonoBehaviour
     private void Awake()
     {
         animator = gameObject.GetComponentInChildren<Animator>();
+        PlayMoveAnimation();
     }
 
     public void PlayMoveAnimation()

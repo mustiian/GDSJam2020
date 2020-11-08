@@ -14,7 +14,6 @@ public class AgentFactory1 : MonoBehaviour, IAgentFactory
             var movement = gameObject.GetComponent<Movement>();
             movement.SetStartPosition(startPosition);
             movement.SetDestination(endPosition);
-            agent.PlayMoveAnimation();
             return agent;
         }
         else return null;

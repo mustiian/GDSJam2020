@@ -44,6 +44,7 @@ public class Fight : MonoBehaviour
         if (_enemiesToFight.Count == 0)
         {
             _fightingCreature.state = State.Moving;
+            _fightingCreature.PlayMoveAnimation();
         }
     }
 
@@ -88,7 +89,6 @@ public class Fight : MonoBehaviour
             _sinceLastAttack = 0;
             if (isDead)
             {
-                //TODO: if player - get points. Somehow deal with multiple reward if more than 2 characters killed the enemy 
                 ChangeToNextEnemy();
             }
         }
@@ -111,7 +111,7 @@ public class Fight : MonoBehaviour
     protected void OnAfterAnimationDied(EventArgs e)
     {
         Debug.Log(_fightingCreature.race.ToString("F") + "is dead");
-        EventHandler handler = Died;
+        EventHandler handler = AfterAnimationDied;
         handler?.Invoke(_fightingCreature, e);
     }
     
