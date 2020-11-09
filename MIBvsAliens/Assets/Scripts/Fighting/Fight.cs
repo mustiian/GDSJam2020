@@ -118,19 +118,21 @@ public class Fight : MonoBehaviour
         }
     }
 
-    private bool Hit(float damageToDeal)
+    private bool _alreadyDead = false;
+    private void Hit(float damageToDeal)
     {
+        if (_alreadyDead)
+            return;
+        
         _health.current -= damageToDeal;
         if (!Alive())
         {
+            _alreadyDead = true;
             Debug.Log("Dead");
             _fightingCreature.state = State.Dying;
             OnDied(EventArgs.Empty);
             StartCoroutine(StartAnimationDeath());
-            return true;
         }
-
-        return false;
     }
 
     private IEnumerator StartAnimationDeath()

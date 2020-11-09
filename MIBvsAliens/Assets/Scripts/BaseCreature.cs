@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BaseCreature : MonoBehaviour
 {
-    public Animator animator;
+    protected Animator animator;
     
     public int cost;
     public State state;

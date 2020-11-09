@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class PointsManager : MonoBehaviour
 {
-    public AgentChooser agentChooser;
-    
     public int Points;
     
     public int AutomaticPoints;
@@ -51,7 +49,7 @@ public class PointsManager : MonoBehaviour
     public void IncreasePoints(int value)
     {
         Points += value;
-        UIText.text = Points.ToString();
+        //UIText.text = Points.ToString();
     }
 
     private IEnumerator AutomaticallyIncrease(int value, float time)
