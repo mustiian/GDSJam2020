@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class CowsManager : MonoBehaviour
 {
@@ -15,6 +16,17 @@ public class CowsManager : MonoBehaviour
         text.text = CowsNumber.ToString();
     }
 
+    public void DecreaseCows(object sender, EventArgs args)
+    {
+        if (sender is BaseAlien alien)
+        {
+            if (alien.HasCow)
+            {
+                alien.HasCow = false;
+                DropCow();
+            }
+        }
+    }
     public void PickupCow()
     {
         if (CowsNumber > 1)
