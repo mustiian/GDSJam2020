@@ -328,7 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 8
   race: 0
-  type: 0
+  type: 1
   HasCow: 0
 --- !u!114 &3526372895025061218
 MonoBehaviour:
@@ -355,6 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45aa07166f634c2419e28d1db49eabd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
 --- !u!114 &1573425548621337126
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,13 +1,6 @@
 ﻿using System;
 using UnityEngine;
 
-public class CharacterInfo
-{
-    public int health;
-    public int damage;
-    public int speed;
-}
-
 public class UnitControlSystem : MonoBehaviour
 {
     public float delayAfterDeath = 2; 
