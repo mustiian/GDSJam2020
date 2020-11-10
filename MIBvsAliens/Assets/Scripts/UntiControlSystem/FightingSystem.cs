@@ -39,12 +39,12 @@ public class FightingSystem : MonoBehaviour
     public event EventHandler Died;
     public event EventHandler AfterAnimationDied;
 
-    public void Start()
+    public void Enable()
     {
         _isFighting = true;
     }
 
-    public void Stop()
+    public void Disable()
     {
         _isFighting = false;
     }
@@ -60,12 +60,29 @@ public class FightingSystem : MonoBehaviour
         if (_state != FightingState.Idle)
             return;
 
+        if (_currentTarget != null)
+        {
+            if (_currentTarget._state == FightingState.Dying)
+                _currentTarget = null;
+        }
+
         if (_currentTarget == null)
         {
             if (!_targetsQueue.TryDequeue(out _currentTarget))
-            {
                 return;
-            }
+            
+            // while (true)
+            // {
+            //     if (_targetsQueue.TryDequeue(out _currentTarget))
+            //     {
+            //         if (_currentTarget._state == FightingState.Dying)
+            //             continue;
+            //     }
+            //     else
+            //     {
+            //         break;
+            //     }
+            // }
         }
         
         StartHitting();

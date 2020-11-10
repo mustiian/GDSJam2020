@@ -1488,6 +1488,7 @@ MonoBehaviour:
   InitiationDelay: 2
   Enemies:
   - {fileID: 4295478058009432357, guid: 3cf2dcaacf950b3498e6708072f006ea, type: 3}
+  - {fileID: 4295478058009432357, guid: 3cf2dcaacf950b3498e6708072f006ea, type: 3}
 --- !u!1 &1810461784
 GameObject:
   m_ObjectHideFlags: 0

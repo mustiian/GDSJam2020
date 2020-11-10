@@ -25,13 +25,13 @@ public class MovementSystem : MonoBehaviour
         _initialized = true;
     }
 
-    public void Start()
+    public void Enable()
     {
         _movingAnimator.Play("Walk");
         _isMoving = true;
     }
 
-    public void Stop()
+    public void Disable()
     {
         _isMoving = false;
     }

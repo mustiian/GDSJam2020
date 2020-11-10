@@ -49,7 +49,6 @@ public class EnemyDetectingSystem : MonoBehaviour
             fightingSystem.Died -= EnemyDied;
             if(TargetsQueue.IsEmpty())
                 OnNoEnemiesAround();
-                
         }
     }
 
