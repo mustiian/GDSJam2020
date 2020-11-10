@@ -21,23 +21,17 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null)
+        {
             instance = this;
+            agentChooser = FindObjectOfType<AgentChooser>();
+            pointsManager = FindObjectOfType<PointsManager>();
+            cowsManager = FindObjectOfType<CowsManager>();
+            agentsInfoGetter = FindObjectOfType<AgentsInfoGetter>();
+            aliensInfoGetter = FindObjectOfType<AliensInfoGetter>();
+            charactersInfo = FindObjectOfType<CharactersInfo>();
+        }
+        
         else
             Destroy(gameObject);
-    }
-
-    void Start()
-    {
-        agentChooser = FindObjectOfType<AgentChooser>();
-        pointsManager = FindObjectOfType<PointsManager>();
-        cowsManager = FindObjectOfType<CowsManager>();
-        agentsInfoGetter = FindObjectOfType<AgentsInfoGetter>();
-        aliensInfoGetter = FindObjectOfType<AliensInfoGetter>();
-        charactersInfo = FindObjectOfType<CharactersInfo>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 }

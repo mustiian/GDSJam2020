@@ -6,7 +6,7 @@ public class AliensInfoGetter : MonoBehaviour
 {
     private Dictionary<AlienType, CharacterInfo> _infos;
 
-    private void Awake()
+    private void Start()
     {
         var charsInfo = GameManager.instance.charactersInfo.alienInfo;
         _infos = charsInfo.ToDictionary(info => info.alienType, info => info.characterInfo);

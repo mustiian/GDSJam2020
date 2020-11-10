@@ -751,7 +751,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 743643266}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &347594661
 MonoBehaviour:
@@ -771,25 +771,25 @@ MonoBehaviour:
       health: 0
       damage: 0
       speed: 0
-      cost: 0
+      cost: 22
   - agentType: 1
     characterInfo:
-      health: 0
-      damage: 0
-      speed: 0
-      cost: 0
+      health: 5
+      damage: 5
+      speed: 1
+      cost: 14
   - agentType: 2
     characterInfo:
       health: 0
       damage: 0
       speed: 0
-      cost: 0
+      cost: 8
   - agentType: 3
     characterInfo:
       health: 0
       damage: 0
       speed: 0
-      cost: 0
+      cost: 88
   alienInfo:
   - alienType: 0
     characterInfo:
@@ -797,13 +797,13 @@ MonoBehaviour:
       damage: 0
       speed: 0
       cost: 0
-  - alienType: 0
+  - alienType: 1
     characterInfo:
       health: 0
       damage: 0
       speed: 0
       cost: 0
-  - alienType: 0
+  - alienType: 2
     characterInfo:
       health: 0
       damage: 0
@@ -838,7 +838,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 743643266}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &355964436
 MonoBehaviour:
@@ -2771,13 +2771,13 @@ Transform:
   m_LocalPosition: {x: -3.9544294, y: -1.9878241, z: -21.008625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 347594660}
   - {fileID: 1481874300}
   - {fileID: 925947912}
   - {fileID: 1068699306}
   - {fileID: 900263003}
   - {fileID: 2058681434}
   - {fileID: 355964435}
-  - {fileID: 347594660}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3246,7 +3246,7 @@ Transform:
   - {fileID: 1237874555}
   - {fileID: 715940241}
   m_Father: {fileID: 743643266}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &900263004
 MonoBehaviour:
@@ -3486,7 +3486,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 743643266}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &925947913
 MonoBehaviour:
@@ -3515,6 +3515,7 @@ GameObject:
   - component: {fileID: 926788841}
   - component: {fileID: 926788843}
   - component: {fileID: 926788842}
+  - component: {fileID: 926788844}
   m_Layer: 5
   m_Name: Agent_Price
   m_TagString: Untagged
@@ -3585,6 +3586,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 926788840}
   m_CullTransparentMesh: 0
+--- !u!114 &926788844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926788840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73b89a9c558f40c4c86913130f32c428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentType: 2
 --- !u!1 &931167702
 GameObject:
   m_ObjectHideFlags: 0
@@ -4002,7 +4016,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 743643266}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1068699307
 MonoBehaviour:
@@ -4142,6 +4156,7 @@ GameObject:
   - component: {fileID: 1159703450}
   - component: {fileID: 1159703452}
   - component: {fileID: 1159703451}
+  - component: {fileID: 1159703453}
   m_Layer: 5
   m_Name: Agent_Price
   m_TagString: Untagged
@@ -4212,6 +4227,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1159703449}
   m_CullTransparentMesh: 0
+--- !u!114 &1159703453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159703449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73b89a9c558f40c4c86913130f32c428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentType: 3
 --- !u!1 &1166323500
 GameObject:
   m_ObjectHideFlags: 0
@@ -4840,6 +4868,7 @@ GameObject:
   - component: {fileID: 1395909204}
   - component: {fileID: 1395909206}
   - component: {fileID: 1395909205}
+  - component: {fileID: 1395909207}
   m_Layer: 5
   m_Name: Agent_Price
   m_TagString: Untagged
@@ -4910,6 +4939,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1395909203}
   m_CullTransparentMesh: 0
+--- !u!114 &1395909207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395909203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73b89a9c558f40c4c86913130f32c428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentType: 1
 --- !u!1 &1411569629
 GameObject:
   m_ObjectHideFlags: 0
@@ -5157,7 +5199,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 743643266}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1481874301
 MonoBehaviour:
@@ -6607,6 +6649,7 @@ GameObject:
   - component: {fileID: 1947481284}
   - component: {fileID: 1947481286}
   - component: {fileID: 1947481285}
+  - component: {fileID: 1947481287}
   m_Layer: 5
   m_Name: Agent_Price
   m_TagString: Untagged
@@ -6677,6 +6720,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947481283}
   m_CullTransparentMesh: 0
+--- !u!114 &1947481287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947481283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73b89a9c558f40c4c86913130f32c428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentType: 0
 --- !u!1 &1962254309
 GameObject:
   m_ObjectHideFlags: 0
@@ -6941,7 +6997,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 743643266}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2058681435
 MonoBehaviour:
