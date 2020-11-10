@@ -75,7 +75,8 @@ public class FightingSystem : MonoBehaviour
     {
         Debug.Log("Attack started" + Time.time);
         _state = FightingState.Attacking;
-        _animator.Play("Attack");
+        _animator.Play("Attack", -1, 0f);
+        _animator.Update(Time.deltaTime);
         var currentAnimatorClipInfo = _animator.GetCurrentAnimatorClipInfo(0);
         var delay = currentAnimatorClipInfo[0].clip.length;
         Debug.Log("Animation length: " + delay);

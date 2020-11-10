@@ -31,25 +31,23 @@ public class LevelManager : MonoBehaviour
 
     public void WavesFinished(WavesController controller)
     {
-        Time.timeScale = 0;
-        panelWin.gameObject.SetActive(true);
+        if (panelLose.gameObject.activeSelf == false)
+            panelWin.gameObject.SetActive(true);
     }
 
     public void CowsEnded(CowsManager controller)
     {
-        Time.timeScale = 0;
-        panelLose.gameObject.SetActive(true);
+        if (panelWin.gameObject.activeSelf == false)
+            panelLose.gameObject.SetActive(true);
     }
 
     public void RestartLevel()
     {
-        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void StartNextLevel()
     {
-        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

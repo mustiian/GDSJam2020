@@ -17,11 +17,13 @@ public class CowsManager : MonoBehaviour
 
     public void PickupCow()
     {
-        if (CowsNumber >= 0)
+        if (CowsNumber > 1)
         {
             CowsNumber--;
         } else
         {
+            CowsNumber--;
+            text.text = CowsNumber.ToString();
             LevelManager.instance.CowsEnded(this);
         }
         text.text = CowsNumber.ToString();
@@ -31,5 +33,9 @@ public class CowsManager : MonoBehaviour
     {
         CowsNumber++;
         text.text = CowsNumber.ToString();
+    }
+
+    private void FixedUpdate()
+    {
     }
 }
