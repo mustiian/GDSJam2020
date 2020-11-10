@@ -790,7 +790,25 @@ MonoBehaviour:
       damage: 0
       speed: 0
       cost: 0
-  alienInfo: []
+  alienInfo:
+  - alienType: 0
+    characterInfo:
+      health: 0
+      damage: 0
+      speed: 0
+      cost: 0
+  - alienType: 0
+    characterInfo:
+      health: 0
+      damage: 0
+      speed: 0
+      cost: 0
+  - alienType: 0
+    characterInfo:
+      health: 0
+      damage: 0
+      speed: 0
+      cost: 0
 --- !u!1 &355964434
 GameObject:
   m_ObjectHideFlags: 0
