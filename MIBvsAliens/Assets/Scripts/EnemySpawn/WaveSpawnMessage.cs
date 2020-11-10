@@ -9,7 +9,7 @@ public class WaveSpawnMessage : MonoBehaviour
     public Image panel;
     public float DelayBetweenWaves;
     private TextMeshProUGUI text;
-    private int waveNumber = 0;
+    private int waveNumber = 1;
     private WavesController controller;
     private Animator animator;
 
