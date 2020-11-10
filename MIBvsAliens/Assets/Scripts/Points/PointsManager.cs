@@ -24,12 +24,6 @@ public class PointsManager : MonoBehaviour
             IncreasePoints(info.cost);
             var fight = alien.GetComponent<FightingSystem>();
             fight.Died -= AddPoints;
-            
-            if (alien.HasCow)
-            {
-                alien.HasCow = false;
-                GameManager.instance.cowsManager.DropCow();
-            }
         }
     }
 
@@ -46,6 +40,7 @@ public class PointsManager : MonoBehaviour
 
     public void IncreasePoints(int value)
     {
+        Debug.Log(value);
         Points += value;
         UIText.text = Points.ToString();
     }

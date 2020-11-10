@@ -10,7 +10,6 @@ public class LineSpawner : MonoBehaviour
     public Transform SpawnPoint;
     public Transform EndPoint;
     private float _yOffset = 0.2f;
-    private int sortingLayer = 1;
 
     private void OnMouseDown()
     {
@@ -22,7 +21,6 @@ public class LineSpawner : MonoBehaviour
         var info = GameManager.instance.agentsInfoGetter.GetFor(agent.type);
         GenerateNewOffset();
         GameManager.instance.pointsManager.ReducePoints(info.cost);
-        agent.GetComponent<SortingGroup>().sortingOrder += sortingLayer;
     }
 
     private int _offsetCount = 0;

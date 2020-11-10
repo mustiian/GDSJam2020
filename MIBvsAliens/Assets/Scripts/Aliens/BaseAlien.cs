@@ -13,6 +13,9 @@ public class BaseAlien : BaseCreature
         if (HasCow)
             return;
 
+        if (!GameManager.instance.cowsManager.HasFreeCow())
+            return;
+
         if (collision.TryGetComponent(out Village creature))
         {
             HasCow = true;

@@ -19,8 +19,6 @@ public class Wave : MonoBehaviour
 
     private List<GameObject> enemies = new List<GameObject>();
 
-    private int sortingLayer = 1;
-
     public void ActivateWave(Vector3 spawnPoint, Vector3 endPoint)
     {
         StartCoroutine(InitEnemies(spawnPoint, endPoint));
@@ -44,7 +42,7 @@ public class Wave : MonoBehaviour
                 unitControlSystem.Initialize(start, endPosition);
             }
 
-            gameEnemy.GetComponent<SortingGroup>().sortingOrder += sortingLayer;
+            //gameEnemy.GetComponent<SortingGroup>().sortingOrder += sortingLayer;
 
             GenerateNewOffset();
 
@@ -61,7 +59,7 @@ public class Wave : MonoBehaviour
 
             if (creature.TryGetComponent(out FightingSystem fight))
             {
-                fight.Died -= EnemyDie;
+                fight.AfterAnimationDied -= EnemyDie;
             }
 
             if (enemies.Count == 0)

@@ -235,6 +235,7 @@ GameObject:
   - component: {fileID: 2716197752711683884}
   - component: {fileID: 4165074357471281094}
   - component: {fileID: 3407186781478013417}
+  - component: {fileID: -5957778581659205660}
   m_Layer: 0
   m_Name: Alien1
   m_TagString: Untagged
@@ -327,7 +328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e8e383d6d9f06244bc06a81a3f97a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 5
   race: 0
   type: 0
   HasCow: 0
@@ -368,6 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45aa07166f634c2419e28d1db49eabd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
 --- !u!114 &3407186781478013417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,6 +379,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1a5fc972b9d11843ad8d54d504600bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5957778581659205660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4295478058009432357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9070dad0424eb245a38d00924f90758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5664597343248160314

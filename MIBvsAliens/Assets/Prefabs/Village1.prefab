@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2672615976718165596}
   - component: {fileID: 4113994558057797448}
   - component: {fileID: 7442918504065439987}
+  - component: {fileID: -5641098195278883449}
   - component: {fileID: 1073368126907469832}
   m_Layer: 0
   m_Name: Village1
@@ -71,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 2110946935893038825, guid: 8ff1e2df24618934facdb27694b80de4,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -110,6 +111,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8867006, y: 9.641273}
   m_EdgeRadius: 0
+--- !u!114 &-5641098195278883449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5331474080826833424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9070dad0424eb245a38d00924f90758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1073368126907469832
 MonoBehaviour:
   m_ObjectHideFlags: 0

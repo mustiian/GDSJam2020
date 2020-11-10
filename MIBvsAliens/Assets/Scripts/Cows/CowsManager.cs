@@ -11,33 +11,36 @@ public class CowsManager : MonoBehaviour
 
     public GameObject CowPrefab;
 
+    private int realCowsNumber;
+
     private void Start()
     {
+        realCowsNumber = CowsNumber;
         text.text = CowsNumber.ToString();
     }
 
-    public void DecreaseCows(object sender, EventArgs args)
+    public bool HasFreeCow()
     {
-        if (sender is BaseAlien alien)
+        return CowsNumber > 0;
+    }
+
+    public void DecreaseCows()
+    {
+        if (realCowsNumber > 1)
         {
-            if (alien.HasCow)
-            {
-                alien.HasCow = false;
-                DropCow();
-            }
+            realCowsNumber--;
+        }
+        else
+        {
+            realCowsNumber--;
+            text.text = CowsNumber.ToString();
+            LevelManager.instance.CowsEnded(this);
         }
     }
     public void PickupCow()
     {
-        if (CowsNumber > 1)
-        {
+        if (CowsNumber > 0)
             CowsNumber--;
-        } else
-        {
-            CowsNumber--;
-            text.text = CowsNumber.ToString();
-            LevelManager.instance.CowsEnded(this);
-        }
         text.text = CowsNumber.ToString();
     }
 
