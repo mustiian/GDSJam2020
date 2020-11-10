@@ -227,13 +227,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4295478058009432359}
-  - component: {fileID: -2242617879250088693}
-  - component: {fileID: 2402538597355263448}
-  - component: {fileID: 5378491769549971167}
   - component: {fileID: 5599674385416671402}
   - component: {fileID: 244018333728036529}
   - component: {fileID: 6721991958667173203}
   - component: {fileID: 9103158541796186770}
+  - component: {fileID: 8199020058058027008}
+  - component: {fileID: 2716197752711683884}
+  - component: {fileID: 4165074357471281094}
+  - component: {fileID: 3407186781478013417}
   m_Layer: 0
   m_Name: Alien1
   m_TagString: Untagged
@@ -256,47 +257,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-2242617879250088693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4295478058009432357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8d743894ff32834486c5a23499c8dd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.8
---- !u!114 &2402538597355263448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4295478058009432357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86a3f3294b192f5458d112ae17f440b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  max: 50
-  current: 12
---- !u!114 &5378491769549971167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4295478058009432357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 054db195c7e3f9448a75c10edd6c8eb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 5
-  attackSpeed: 1
 --- !u!50 &5599674385416671402
 Rigidbody2D:
   serializedVersion: 4
@@ -367,11 +327,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e8e383d6d9f06244bc06a81a3f97a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   cost: 5
-  state: 0
   race: 0
+  type: 0
   HasCow: 0
+--- !u!114 &8199020058058027008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4295478058009432357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0324499e115940048a73080c65fb7985, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayAfterDeath: 2
+--- !u!114 &2716197752711683884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4295478058009432357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc1e39f916de4124db23973fff5a8ce2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4165074357471281094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4295478058009432357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45aa07166f634c2419e28d1db49eabd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3407186781478013417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4295478058009432357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a5fc972b9d11843ad8d54d504600bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5664597343248160314
 GameObject:
   m_ObjectHideFlags: 0

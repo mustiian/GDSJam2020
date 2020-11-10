@@ -795,6 +795,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 324531501}
   m_CullTransparentMesh: 0
+--- !u!1 &355964434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 355964435}
+  - component: {fileID: 355964436}
+  m_Layer: 0
+  m_Name: AliensInfoGetter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &355964435
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355964434}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 743643266}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &355964436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355964434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b69c1dd5954515abd1e5f1cdffe934, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410213592
 GameObject:
   m_ObjectHideFlags: 0
@@ -2131,6 +2174,8 @@ MonoBehaviour:
   agentChooser: {fileID: 0}
   pointsManager: {fileID: 0}
   cowsManager: {fileID: 0}
+  agentsInfoGetter: {fileID: 0}
+  aliensInfoGetter: {fileID: 0}
 --- !u!4 &743643266
 Transform:
   m_ObjectHideFlags: 0
@@ -2146,6 +2191,8 @@ Transform:
   - {fileID: 925947912}
   - {fileID: 1068699306}
   - {fileID: 900263003}
+  - {fileID: 2058681434}
+  - {fileID: 355964435}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2741,7 +2788,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3f1bdc419c8f74fa7c9745b972cfd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agentChooser: {fileID: 1481874301}
   Points: 20
   AutomaticPoints: 1
   AutomaticDelay: 1
@@ -5276,6 +5322,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1983281831}
   m_CullTransparentMesh: 0
+--- !u!1 &2058681433
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2058681434}
+  - component: {fileID: 2058681435}
+  m_Layer: 0
+  m_Name: AgentsInfoGetter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2058681434
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058681433}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 743643266}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2058681435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058681433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ddc8bea7fa49ca9f48f77d4eaa8f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2104862498
 GameObject:
   m_ObjectHideFlags: 0

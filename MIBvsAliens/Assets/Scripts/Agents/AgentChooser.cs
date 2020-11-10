@@ -10,10 +10,10 @@ public class AgentChooser : MonoBehaviour
     public IAgentFactory agentFactory;
     void Start()
     {
-        buttons[0].onClick.AddListener(() => ChangeCurrentAgentFactory(FindObjectOfType<AgentFactory1>()));
-        buttons[1].onClick.AddListener(() => ChangeCurrentAgentFactory(FindObjectOfType<AgentFactory2>()));
-        buttons[2].onClick.AddListener(() => ChangeCurrentAgentFactory(FindObjectOfType<AgentFactory3>()));
-        buttons[3].onClick.AddListener(() => ChangeCurrentAgentFactory(FindObjectOfType<AgentFactory4>()));
+        buttons[0].onClick.AddListener(() => ChangeCurrentAgentFactory(FindObjectOfType<AgentFactoryOld>()));
+        buttons[1].onClick.AddListener(() => ChangeCurrentAgentFactory(FindObjectOfType<AgentFactoryGirl>()));
+        buttons[2].onClick.AddListener(() => ChangeCurrentAgentFactory(FindObjectOfType<AgentFactoryBlack>()));
+        buttons[3].onClick.AddListener(() => ChangeCurrentAgentFactory(FindObjectOfType<AgentFactoryBald>()));
     }
 
     public void EnableButton(int i)

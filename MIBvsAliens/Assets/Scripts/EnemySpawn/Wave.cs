@@ -34,15 +34,14 @@ public class Wave : MonoBehaviour
             var gameEnemy = GameObject.Instantiate(enemy, start, Quaternion.identity);
             enemies.Add(gameEnemy);
 
-            if (gameEnemy.TryGetComponent(out Fight fight)){
+            if (gameEnemy.TryGetComponent(out FightingSystem fight)){
                 fight.Died += GameManager.instance.pointsManager.AddPoints;
                 fight.AfterAnimationDied += EnemyDie;
             }
 
-            if (gameEnemy.TryGetComponent(out Movement movement))
+            if (gameEnemy.TryGetComponent(out UnitControlSystem unitControlSystem))
             {
-                movement.SetStartPosition(start);
-                movement.SetDestination(endPosition);
+                unitControlSystem.Initialize(start, endPosition);
             }
 
             gameEnemy.GetComponent<SortingGroup>().sortingOrder += sortingLayer;
@@ -60,12 +59,10 @@ public class Wave : MonoBehaviour
         {
             enemies.Remove(creature.gameObject);
 
-            if (creature.TryGetComponent(out Fight fight))
+            if (creature.TryGetComponent(out FightingSystem fight))
             {
                 fight.Died -= EnemyDie;
             }
-
-            Destroy(creature.gameObject);
 
             if (enemies.Count == 0)
                 OnFinishWave?.Invoke(this);

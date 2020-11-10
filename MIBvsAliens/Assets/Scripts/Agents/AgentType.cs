@@ -1,7 +1,7 @@
 ﻿public enum AgentType
 {
-    Type1,
-    Type2,
-    Type3,
-    Type4
+    Black,
+    Old,
+    Bald,
+    Girl
 }

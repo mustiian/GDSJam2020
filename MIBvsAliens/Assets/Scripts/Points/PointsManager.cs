@@ -21,7 +21,7 @@ public class PointsManager : MonoBehaviour
         if (sender is BaseCreature creature)
         {
             IncreasePoints(creature.cost);
-            var fight = creature.GetComponent<Fight>();
+            var fight = creature.GetComponent<FightingSystem>();
             fight.Died -= AddPoints;
         }
 
@@ -49,7 +49,7 @@ public class PointsManager : MonoBehaviour
     public void IncreasePoints(int value)
     {
         Points += value;
-        //UIText.text = Points.ToString();
+        UIText.text = Points.ToString();
     }
 
     private IEnumerator AutomaticallyIncrease(int value, float time)
