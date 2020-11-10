@@ -103,4 +103,14 @@ public class UnitControlSystem : MonoBehaviour
     {
         _movementSystem.TurnAround();
     }
+
+    public void ChangeMovingSpeed(int speed)
+    {
+        _movementSystem.speed = speed;
+    }
+
+    public int GetMovingSpeed()
+    {
+        return _movementSystem.speed;
+    }
 }

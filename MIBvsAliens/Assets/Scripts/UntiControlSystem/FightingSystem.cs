@@ -70,19 +70,6 @@ public class FightingSystem : MonoBehaviour
         {
             if (!_targetsQueue.TryDequeue(out _currentTarget))
                 return;
-            
-            // while (true)
-            // {
-            //     if (_targetsQueue.TryDequeue(out _currentTarget))
-            //     {
-            //         if (_currentTarget._state == FightingState.Dying)
-            //             continue;
-            //     }
-            //     else
-            //     {
-            //         break;
-            //     }
-            // }
         }
         
         StartHitting();

@@ -18,6 +18,8 @@ public class BaseAlien : BaseCreature
             HasCow = true;
             var controlSystem = GetComponent<UnitControlSystem>();
             controlSystem.MoveTurnAround();
+            int currentSpeed = controlSystem.GetMovingSpeed();
+            controlSystem.ChangeMovingSpeed(currentSpeed*2);
             
             GameManager.instance.cowsManager.PickupCow();
             Vector2 pos = transform.position + new Vector3(0f, 0.7f, 0f);
