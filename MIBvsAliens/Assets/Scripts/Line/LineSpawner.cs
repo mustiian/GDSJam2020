@@ -17,10 +17,11 @@ public class LineSpawner : MonoBehaviour
         var position = SpawnPoint.position;
         var agent = GameManager.instance.agentChooser.agentFactory.Create(
             new Vector3(position.x, position.y + _yOffset), EndPoint.position);
-        GenerateNewOffset();
-        if (!agent)
+        if (agent == null)
             return;
-        GameManager.instance.pointsManager.ReducePoints(agent.cost);
+        var info = GameManager.instance.agentsInfoGetter.GetFor(agent.type);
+        GenerateNewOffset();
+        GameManager.instance.pointsManager.ReducePoints(info.cost);
         agent.GetComponent<SortingGroup>().sortingOrder += sortingLayer;
     }
 

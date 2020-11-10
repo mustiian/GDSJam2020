@@ -7,11 +7,12 @@ public class MovementSystem : MonoBehaviour
     private Transform _transform;
     private Vector3 _toPoint;
     private Vector3 _fromPoint;
-    private int _speed;
     private bool _isMoving;
     private Animator _movingAnimator;
+    
+    public int speed;
 
-    public void Initialize(Transform objectToMove, Vector3 fromPoint, Vector3 toPoint, int speed, Animator movingAnimator)
+    public void Initialize(Transform objectToMove, Vector3 fromPoint, Vector3 toPoint, int initSpeed, Animator movingAnimator)
     {
         if (_initialized)
             return;
@@ -19,19 +20,19 @@ public class MovementSystem : MonoBehaviour
         _transform = objectToMove;
         _fromPoint = fromPoint;
         _toPoint = toPoint;
-        _speed = speed;
+        speed = initSpeed;
         _movingAnimator = movingAnimator;
 
         _initialized = true;
     }
 
-    public void Start()
+    public void Enable()
     {
         _movingAnimator.Play("Walk");
         _isMoving = true;
     }
 
-    public void Stop()
+    public void Disable()
     {
         _isMoving = false;
     }
@@ -43,7 +44,7 @@ public class MovementSystem : MonoBehaviour
         _toPoint = tmp;
         _transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y);
     }
-    
+
     void FixedUpdate()
     {
         if (!_initialized)
@@ -52,7 +53,7 @@ public class MovementSystem : MonoBehaviour
         if (!_isMoving)
             return;
 
-        float step = _speed * Time.fixedDeltaTime;
+        float step = speed * Time.fixedDeltaTime;
         _transform.position = Vector3.MoveTowards(_transform.position, _toPoint, step);
     }
 }

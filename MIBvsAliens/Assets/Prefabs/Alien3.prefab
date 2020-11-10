@@ -329,7 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 12
   race: 0
-  type: 0
+  type: 2
   HasCow: 0
 --- !u!114 &4746197619000011582
 MonoBehaviour:
@@ -368,6 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45aa07166f634c2419e28d1db49eabd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
 --- !u!114 &5211003133458031502
 MonoBehaviour:
   m_ObjectHideFlags: 0

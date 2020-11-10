@@ -18,11 +18,18 @@ public class PointsManager : MonoBehaviour
 
     public void AddPoints(object sender, EventArgs args)
     {
-        if (sender is BaseCreature creature)
+        if (sender is BaseAlien alien)
         {
-            IncreasePoints(creature.cost);
-            var fight = creature.GetComponent<FightingSystem>();
+            var info = GameManager.instance.aliensInfoGetter.GetFor(alien.type);
+            IncreasePoints(info.cost);
+            var fight = alien.GetComponent<FightingSystem>();
             fight.Died -= AddPoints;
+            
+            if (alien.HasCow)
+            {
+                alien.HasCow = false;
+                GameManager.instance.cowsManager.DropCow();
+            }
         }
     }
 

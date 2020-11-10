@@ -1,13 +1,6 @@
 ﻿using System;
 using UnityEngine;
 
-public class CharacterInfo
-{
-    public int health;
-    public int damage;
-    public int speed;
-}
-
 public class UnitControlSystem : MonoBehaviour
 {
     public float delayAfterDeath = 2; 
@@ -66,7 +59,7 @@ public class UnitControlSystem : MonoBehaviour
         _fightingSystem.AfterAnimationDied += FightingSystemOnAfterAnimationDied;
 
         _state = State.Moving;
-        _movementSystem.Start();
+        _movementSystem.Enable();
     }
     
     private void FightingSystemOnAfterAnimationDied(object sender, EventArgs e)
@@ -83,9 +76,9 @@ public class UnitControlSystem : MonoBehaviour
     {
         if (_state != State.Fighting)
         {
-            _movementSystem.Stop();
+            _movementSystem.Disable();
             _state = State.Fighting;
-            _fightingSystem.Start();
+            _fightingSystem.Enable();
         }
     }
 
@@ -93,14 +86,24 @@ public class UnitControlSystem : MonoBehaviour
     {
         if (_state == State.Fighting)
         {
-            _fightingSystem.Stop();
+            _fightingSystem.Disable();
             _state = State.Moving;
-            _movementSystem.Start();
+            _movementSystem.Enable();
         }
     }
 
     public void MoveTurnAround()
     {
         _movementSystem.TurnAround();
+    }
+
+    public void ChangeMovingSpeed(int speed)
+    {
+        _movementSystem.speed = speed;
+    }
+
+    public int GetMovingSpeed()
+    {
+        return _movementSystem.speed;
     }
 }
