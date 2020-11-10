@@ -13,7 +13,7 @@ public class Wave : MonoBehaviour
 
     public Action<Wave> OnFinishWave;
 
-    private float _yOffset = -0.6f;
+    private float _yOffset = -0.2f;
 
     private int _offsetCount = 0;
 
@@ -71,14 +71,14 @@ public class Wave : MonoBehaviour
 
     private void GenerateNewOffset()
     {
-        if (_offsetCount < 4)
+        if (_offsetCount < 3)
         {
-            _yOffset += 0.3f;
+            _yOffset -= 0.2f;
             _offsetCount++;
         }
         else
         {
-            _yOffset = -0.6f;
+            _yOffset = 0.2f;
             _offsetCount = 0;
         }
     }

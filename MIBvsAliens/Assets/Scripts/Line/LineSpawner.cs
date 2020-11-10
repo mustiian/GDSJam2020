@@ -9,7 +9,7 @@ public class LineSpawner : MonoBehaviour
 {
     public Transform SpawnPoint;
     public Transform EndPoint;
-    private float _yOffset = -0.2f;
+    private float _yOffset = 0.2f;
     private int sortingLayer = 1;
 
     private void OnMouseDown()
@@ -29,14 +29,13 @@ public class LineSpawner : MonoBehaviour
     {
         if (_offsetCount < 3)
         {
-            _yOffset += 0.2f;
+            _yOffset -= 0.2f;
             _offsetCount++;
         }
         else
         {
-            _yOffset = -0.2f;
+            _yOffset = 0.2f;
             _offsetCount = 0;
         }
-
     }
 }
