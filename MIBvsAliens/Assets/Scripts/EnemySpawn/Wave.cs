@@ -53,14 +53,13 @@ public class Wave : MonoBehaviour
     // Finish wave when all enemies are dead
     public void EnemyDie(object sender, EventArgs args)
     {
-        if (sender is BaseCreature creature)
+        if (sender is FightingSystem creature)
         {
             enemies.Remove(creature.gameObject);
 
-            if (creature.TryGetComponent(out FightingSystem fight))
-            {
-                fight.AfterAnimationDied -= EnemyDie;
-            }
+            Debug.Log("Enemy die");
+
+            creature.AfterAnimationDied -= EnemyDie;
 
             if (enemies.Count == 0)
                 OnFinishWave?.Invoke(this);

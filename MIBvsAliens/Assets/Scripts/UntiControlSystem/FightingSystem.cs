@@ -131,4 +131,9 @@ public class FightingSystem : MonoBehaviour
     {
         AfterAnimationDied?.Invoke(this, EventArgs.Empty);
     }
+
+    private void OnDestroy()
+    {
+        AfterAnimationDied?.Invoke(this, EventArgs.Empty);
+    }
 }

@@ -53,7 +53,7 @@ public class MovementSystem : MonoBehaviour
         if (!_isMoving)
             return;
 
-        float step = speed * Time.fixedDeltaTime;
+        float step = 0.5f * speed * Time.fixedDeltaTime;
         _transform.position = Vector3.MoveTowards(_transform.position, _toPoint, step);
     }
 }
