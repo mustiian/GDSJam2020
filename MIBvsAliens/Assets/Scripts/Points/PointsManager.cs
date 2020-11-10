@@ -18,12 +18,13 @@ public class PointsManager : MonoBehaviour
 
     public void AddPoints(object sender, EventArgs args)
     {
-        if (sender is BaseAlien alien)
+        if (sender is FightingSystem alien)
         {
-            var info = GameManager.instance.aliensInfoGetter.GetFor(alien.type);
+            Debug.Log("Add points");
+
+            var info = GameManager.instance.aliensInfoGetter.GetFor(alien.GetComponent<BaseAlien>().type);
             IncreasePoints(info.cost);
-            var fight = alien.GetComponent<FightingSystem>();
-            fight.Died -= AddPoints;
+            alien.Died -= AddPoints;
         }
     }
 
@@ -40,7 +41,6 @@ public class PointsManager : MonoBehaviour
 
     public void IncreasePoints(int value)
     {
-        Debug.Log(value);
         Points += value;
         UIText.text = Points.ToString();
     }
