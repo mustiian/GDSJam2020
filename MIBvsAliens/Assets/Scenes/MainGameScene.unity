@@ -933,7 +933,7 @@ MonoBehaviour:
     characterInfo:
       health: 50
       damage: 8
-      speed: 0
+      speed: 1
       cost: 13
   - agentType: 3
     characterInfo:
