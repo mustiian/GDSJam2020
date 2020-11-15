@@ -3685,7 +3685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Points: 20
   AutomaticPoints: 1
-  AutomaticDelay: 2
+  AutomaticDelay: 1
   UIText: {fileID: 1166323502}
 --- !u!1 &926788840
 GameObject:
