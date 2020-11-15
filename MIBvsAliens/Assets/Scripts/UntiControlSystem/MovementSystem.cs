@@ -12,7 +12,8 @@ public class MovementSystem : MonoBehaviour
     
     public int speed;
 
-    public void Initialize(Transform objectToMove, Vector3 fromPoint, Vector3 toPoint, int initSpeed, Animator movingAnimator)
+    public void Initialize(Transform objectToMove, Vector3 fromPoint,
+        Vector3 toPoint, int initSpeed, Animator movingAnimator)
     {
         if (_initialized)
             return;

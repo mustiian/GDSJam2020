@@ -3,13 +3,10 @@ using UnityEngine;
 
 public class UnitControlSystem : MonoBehaviour
 {
-    public float delayAfterDeath = 2; 
-    
     enum State
     {
         Moving,
         Fighting,
-        Dying
     }
     
     private EnemyDetectingSystem _detectingSystem;
@@ -62,15 +59,54 @@ public class UnitControlSystem : MonoBehaviour
         _state = State.Moving;
         _movementSystem.Enable();
     }
+    
+    public float delayAfterDeath = 2;
+    public event EventHandler WillBeDestroyed;
+    
+    public void MoveTurnAround()
+    {
+        _movementSystem.TurnAround();
+    }
+
+    #region ControlMethods
+    
+    public void ChangeMovingSpeed(int speed)
+    {
+        _movementSystem.speed = speed;
+    }
+
+    public int GetMovingSpeed()
+    {
+        return _movementSystem.speed;
+    }
+
+    public void RequestDestroy()
+    {
+        _fightingSystem.IsValidTarget = false;
+        OnWillBeDestroyed();
+        DestroyUnit();
+    }
+    
+    #endregion
 
     private void FightingSystemOnAfterAnimationDied(object sender, EventArgs e)
+    {
+        DestroyUnit();
+    }
+
+    private void DestroyUnit()
     {
         _detectingSystem.Dispose();
         _detectingSystem.EnemyDetected -= DetectingSystemOnEnemyDetected;
         _detectingSystem.NoEnemiesAround -= DetectingSystemOnNoEnemiesAround;
         _fightingSystem.AfterAnimationDied -= FightingSystemOnAfterAnimationDied;
-        
+
         Destroy(gameObject, delayAfterDeath);
+    }
+
+    private void OnWillBeDestroyed()
+    {
+        WillBeDestroyed?.Invoke(this, EventArgs.Empty);
     }
 
     private void DetectingSystemOnEnemyDetected(object sender, EventArgs e)
@@ -91,20 +127,5 @@ public class UnitControlSystem : MonoBehaviour
             _state = State.Moving;
             _movementSystem.Enable();
         }
-    }
-
-    public void MoveTurnAround()
-    {
-        _movementSystem.TurnAround();
-    }
-
-    public void ChangeMovingSpeed(int speed)
-    {
-        _movementSystem.speed = speed;
-    }
-
-    public int GetMovingSpeed()
-    {
-        return _movementSystem.speed;
     }
 }

@@ -32,14 +32,16 @@ public class Wave : MonoBehaviour
             var gameEnemy = GameObject.Instantiate(enemy, start, Quaternion.identity);
             enemies.Add(gameEnemy);
 
-            if (gameEnemy.TryGetComponent(out FightingSystem fight)){
+            if (gameEnemy.TryGetComponent(out FightingSystem fight))
+            {
                 fight.Died += GameManager.instance.pointsManager.AddPoints;
-                fight.AfterAnimationDied += EnemyDie;
+                fight.AfterAnimationDied += UnitDied;
             }
 
             if (gameEnemy.TryGetComponent(out UnitControlSystem unitControlSystem))
             {
                 unitControlSystem.Initialize(start, endPosition);
+                unitControlSystem.WillBeDestroyed += UnitControlSystemOnWillBeDestroyed;
             }
 
             //gameEnemy.GetComponent<SortingGroup>().sortingOrder += sortingLayer;
@@ -50,19 +52,42 @@ public class Wave : MonoBehaviour
         }
     }
 
-    // Finish wave when all enemies are dead
-    public void EnemyDie(object sender, EventArgs args)
+    private void UnitControlSystemOnWillBeDestroyed(object sender, EventArgs e)
     {
-        if (sender is FightingSystem creature)
+        if (sender is UnitControlSystem controlSystem)
         {
-            enemies.Remove(creature.gameObject);
+            RemoveUnit(controlSystem);
+        }
+    }
 
-            Debug.Log("Enemy die");
+    private void RemoveUnit(UnitControlSystem controlSystem, FightingSystem fightingSystem = null)
+    {
+        controlSystem.WillBeDestroyed -= UnitControlSystemOnWillBeDestroyed;
+        if (fightingSystem == null)
+            fightingSystem = controlSystem.GetComponent<FightingSystem>();
+        RemoveFightingSystem(fightingSystem);
+    }
 
-            creature.AfterAnimationDied -= EnemyDie;
+    private void RemoveFightingSystem(FightingSystem fightingSystem)
+    {
+        enemies.Remove(fightingSystem.gameObject);
 
-            if (enemies.Count == 0)
-                OnFinishWave?.Invoke(this);
+        Debug.Log("Enemy die");
+
+        fightingSystem.AfterAnimationDied -= UnitDied;
+        fightingSystem.Died -= GameManager.instance.pointsManager.AddPoints;
+
+        if (enemies.Count == 0)
+            OnFinishWave?.Invoke(this);
+    }
+
+
+    private void UnitDied(object sender, EventArgs e)
+    {
+        if (sender is FightingSystem fightingSystem)
+        {
+            var controlSystem = fightingSystem.GetComponent<UnitControlSystem>();
+            RemoveUnit(controlSystem, fightingSystem);
         }
     }
 

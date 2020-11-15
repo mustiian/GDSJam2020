@@ -29,7 +29,8 @@ public class EnemyDetectingSystem : MonoBehaviour
             return;
 
         if (other.TryGetComponent<BaseCreature>(out var otherCreature) &&
-            other.TryGetComponent<FightingSystem>(out var otherFightingSystem)) 
+            other.TryGetComponent<FightingSystem>(out var otherFightingSystem) && 
+            other.TryGetComponent<UnitControlSystem>(out var otherControlSystem)) 
         {
             if (otherCreature.race == _race)
                 return;
@@ -38,21 +39,44 @@ public class EnemyDetectingSystem : MonoBehaviour
                  return;
 
             otherFightingSystem.Died += EnemyDied;
+            otherControlSystem.WillBeDestroyed += EnemyWillBeDestroyed;
 
             TargetsQueue.Enqueue(otherFightingSystem);
             OnEnemyDetected();
         }
     }
 
+    private void EnemyWillBeDestroyed(object sender, EventArgs e)
+    {
+        if (sender is UnitControlSystem controlSystem)
+        {
+            RemoveEnemy(controlSystem);
+        }
+    }
+
+    private void RemoveEnemy(UnitControlSystem controlSystem, FightingSystem fightingSystem = null)
+    {
+        controlSystem.WillBeDestroyed -= EnemyWillBeDestroyed;
+        if (fightingSystem == null)
+            fightingSystem = controlSystem.GetComponent<FightingSystem>();
+        RemoveFightingSystemFromQueue(fightingSystem);
+    }
+
     private void EnemyDied(object sender, EventArgs e)
     {
         if (sender is FightingSystem fightingSystem)
         {
-            TargetsQueue.TryRemove(fightingSystem);
-            fightingSystem.Died -= EnemyDied;
-            if(TargetsQueue.IsEmpty())
-                OnNoEnemiesAround();
+            var controlSystem = fightingSystem.GetComponent<UnitControlSystem>();
+            RemoveEnemy(controlSystem, fightingSystem);
         }
+    }
+
+    private void RemoveFightingSystemFromQueue(FightingSystem fightingSystem)
+    {
+        TargetsQueue.TryRemove(fightingSystem);
+        fightingSystem.Died -= EnemyDied;
+        if (TargetsQueue.IsEmpty())
+            OnNoEnemiesAround();
     }
 
     private void OnTriggerExit2D(Collider2D other)

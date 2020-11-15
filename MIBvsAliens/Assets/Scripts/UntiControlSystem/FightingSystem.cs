@@ -22,7 +22,8 @@ public class FightingSystem : MonoBehaviour
 
     private bool _isFighting = false;
 
-    public void Initialize(Queue<FightingSystem> targetQueue, int health, int damage, Animator animator)
+    public void Initialize(Queue<FightingSystem> targetQueue, int health,
+        int damage, Animator animator)
     {
         if (_initialized)
             return;
@@ -36,7 +37,11 @@ public class FightingSystem : MonoBehaviour
         _initialized = true;
     }
 
-    public Boolean IsValidTarget => _state != FightingState.Dying;
+    public Boolean IsValidTarget
+    {
+        get => _state != FightingState.Dying;
+        set => _state = value ? FightingState.Idle : FightingState.Dying;
+    }
 
     public event EventHandler Died;
     public event EventHandler AfterAnimationDied;
