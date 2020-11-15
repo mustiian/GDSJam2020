@@ -12,7 +12,7 @@ public class EnemyBase : MonoBehaviour
             {
                 alien.HasCow = false;
                 GameManager.instance.cowsManager.DecreaseCows();
-                //hide the alien here
+                alien.GetComponentInChildren<Animator>().Play("Death");
                 controlSystem.RequestDestroy();
             }
         }
