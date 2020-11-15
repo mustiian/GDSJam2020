@@ -36,6 +36,8 @@ public class FightingSystem : MonoBehaviour
         _initialized = true;
     }
 
+    public Boolean IsValidTarget => _state != FightingState.Dying;
+
     public event EventHandler Died;
     public event EventHandler AfterAnimationDied;
 

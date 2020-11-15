@@ -33,6 +33,9 @@ public class EnemyDetectingSystem : MonoBehaviour
         {
             if (otherCreature.race == _race)
                 return;
+            
+            if (!otherFightingSystem.IsValidTarget)
+                 return;
 
             otherFightingSystem.Died += EnemyDied;
 

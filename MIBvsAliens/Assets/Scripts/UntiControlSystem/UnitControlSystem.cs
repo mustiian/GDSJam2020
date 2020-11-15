@@ -8,7 +8,8 @@ public class UnitControlSystem : MonoBehaviour
     enum State
     {
         Moving,
-        Fighting
+        Fighting,
+        Dying
     }
     
     private EnemyDetectingSystem _detectingSystem;
@@ -61,7 +62,7 @@ public class UnitControlSystem : MonoBehaviour
         _state = State.Moving;
         _movementSystem.Enable();
     }
-    
+
     private void FightingSystemOnAfterAnimationDied(object sender, EventArgs e)
     {
         _detectingSystem.Dispose();
