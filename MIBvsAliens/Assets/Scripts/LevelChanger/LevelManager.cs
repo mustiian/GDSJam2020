@@ -14,6 +14,8 @@ public class LevelManager : MonoBehaviour
     public Image panelWin;
     public Image panelLose;
 
+    private FaderController fader;
+
     private void Awake()
     {
         if (instance == null)
@@ -27,6 +29,8 @@ public class LevelManager : MonoBehaviour
     {
         controller = FindObjectOfType<WavesController>();
         controller.OnFinishWaves += WavesFinished;
+        fader = FindObjectOfType<FaderController>();
+        fader.FadeOut(1f);
     }
 
     public void WavesFinished(WavesController controller)
@@ -55,13 +59,19 @@ public class LevelManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartCoroutine(LoadScene(1f, SceneManager.GetActiveScene().buildIndex));
     }
 
     public void StartNextLevel()
     {
+        StartCoroutine(LoadScene(1f, SceneManager.GetActiveScene().buildIndex + 1));
+    }
+
+    IEnumerator LoadScene(float delay, int index)
+    {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        fader.FadeIn(delay);
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(index);
     }
 }
