@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AnimationScale : MonoBehaviour
 {
@@ -8,9 +9,9 @@ public class AnimationScale : MonoBehaviour
     public bool Repeat;
     [Range(0.00001f, 1000)]
     public float ScaleDuration;
-    public Vector2 ScaleValue;
+    public Vector3 ScaleValue;
 
-    private Vector2 originalScale;
+    private Vector3 originalScale;
     private bool animationIsPlaying = false;
 
     // Start is called before the first frame update
@@ -24,7 +25,7 @@ public class AnimationScale : MonoBehaviour
 
     public bool isPlaying() => animationIsPlaying;
 
-    public void StartAnimation(float duration, Vector2 scaleValue, bool repeat = false)
+    public void StartAnimation(float duration, Vector3 scaleValue, bool repeat = false)
     {
         if (animationIsPlaying)
             return;
@@ -44,6 +45,7 @@ public class AnimationScale : MonoBehaviour
     public void StopAnimation()
     {
         transform.localScale = originalScale;
+
         animationIsPlaying = false;
         StopCoroutine(AnimationPlay());
     }
@@ -53,7 +55,8 @@ public class AnimationScale : MonoBehaviour
         float startTime = Time.time;
 
         float deltaX = 0, deltaY = 0;
-        Vector2 realScale = Vector2.zero;
+        Vector3 realScale = Vector3.zero;
+        realScale.z = transform.localScale.z;
 
         animationIsPlaying = true;
         do

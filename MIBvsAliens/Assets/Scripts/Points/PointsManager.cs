@@ -10,6 +10,7 @@ public class PointsManager : MonoBehaviour
     public int AutomaticPoints;
     public float AutomaticDelay;
     public Text UIText;
+    public GameObject CurrencyIcon;
 
     private void Start()
     {
@@ -41,6 +42,7 @@ public class PointsManager : MonoBehaviour
 
     public void IncreasePoints(int value)
     {
+        CurrencyIcon.GetComponent<AnimationScale>().StartAnimation();
         Points += value;
         UIText.text = Points.ToString();
     }

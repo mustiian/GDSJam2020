@@ -16,14 +16,15 @@ public class BaseAlien : BaseCreature
         if (!GameManager.instance.cowsManager.HasFreeCow())
             return;
 
-        if (collision.TryGetComponent(out Village creature))
+        if (collision.TryGetComponent(out Village village))
         {
             HasCow = true;
             var controlSystem = GetComponent<UnitControlSystem>();
             controlSystem.MoveTurnAround();
             int currentSpeed = controlSystem.GetMovingSpeed();
             controlSystem.ChangeMovingSpeed(currentSpeed*2);
-            
+            village.GetComponent<AnimationScale>().StartAnimation();
+
             GameManager.instance.cowsManager.PickupCow();
             Vector2 pos = transform.position + new Vector3(0f, 0.7f, 0f);
             GameObject.Instantiate(GameManager.instance.cowsManager.CowPrefab, pos, Quaternion.identity, transform);
