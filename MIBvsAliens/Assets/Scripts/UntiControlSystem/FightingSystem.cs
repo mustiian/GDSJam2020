@@ -45,6 +45,7 @@ public class FightingSystem : MonoBehaviour
 
     public event EventHandler Died;
     public event EventHandler AfterAnimationDied;
+    public event EventHandler<float> GotHit;
 
     public void Enable()
     {
@@ -113,6 +114,7 @@ public class FightingSystem : MonoBehaviour
             return;
         
         _health -= damage;
+        OnGetHit();
         if (!Alive())
         {
             _state = FightingState.Dying;
@@ -127,6 +129,11 @@ public class FightingSystem : MonoBehaviour
     private bool Alive()
     {
         return _health > 0;
+    }
+    
+    private void OnGetHit()
+    {
+        GotHit?.Invoke(this, _health);
     }
 
     private void OnDied()
