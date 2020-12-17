@@ -87,10 +87,15 @@ public class FightingSystem : MonoBehaviour
     {
         Debug.Log("Attack started" + Time.time);
         _state = FightingState.Attacking;
-        _animator.Play("Attack", -1, 0f);
-        _animator.Update(Time.deltaTime);
-        var currentAnimatorClipInfo = _animator.GetCurrentAnimatorClipInfo(0);
-        var delay = currentAnimatorClipInfo[0].clip.length;
+        float delay = 0.1f;
+        if (_animator)
+        {
+            _animator.Play("Attack", -1, 0f);
+            _animator.Update(Time.deltaTime);
+            var currentAnimatorClipInfo = _animator.GetCurrentAnimatorClipInfo(0);
+            delay = currentAnimatorClipInfo[0].clip.length;
+        }
+       
         Debug.Log("Animation length: " + delay);
         Invoke(nameof(EndHitting), delay);
     }
@@ -112,15 +117,19 @@ public class FightingSystem : MonoBehaviour
     {
         if (_state == FightingState.Dying)
             return;
-        
         _health -= damage;
         OnGetHit();
+        float delay = 0.1f;
         if (!Alive())
         {
             _state = FightingState.Dying;
-            _animator.Play("Death");
-            var currentAnimatorClipInfo = _animator.GetCurrentAnimatorClipInfo(0);
-            var delay = currentAnimatorClipInfo[0].clip.length;
+            if (_animator)
+            {
+                _animator.Play("Death");
+                var currentAnimatorClipInfo = _animator.GetCurrentAnimatorClipInfo(0);
+                delay = currentAnimatorClipInfo[0].clip.length;
+            }
+            
             OnDied();
             Invoke(nameof(OnAfterAnimationDied), delay);
         }

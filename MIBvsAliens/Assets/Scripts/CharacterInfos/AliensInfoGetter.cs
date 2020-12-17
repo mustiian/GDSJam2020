@@ -14,6 +14,15 @@ public class AliensInfoGetter : MonoBehaviour
 
     public CharacterInfo GetFor(AlienType alienType)
     {
+        if (_infos == null)
+            GetInfo();
+
         return _infos[alienType];
+    }
+
+    private void GetInfo()
+    {
+        var charsInfo = GameManager.instance.charactersInfo.alienInfo;
+        _infos = charsInfo.ToDictionary(info => info.alienType, info => info.characterInfo);
     }
 }

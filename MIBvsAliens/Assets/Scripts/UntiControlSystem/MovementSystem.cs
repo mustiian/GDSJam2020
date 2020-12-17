@@ -29,6 +29,7 @@ public class MovementSystem : MonoBehaviour
 
     public void Enable()
     {
+        if (_movingAnimator)
         _movingAnimator.Play("Walk");
         _isMoving = true;
     }

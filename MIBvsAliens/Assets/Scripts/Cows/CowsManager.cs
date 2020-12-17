@@ -34,7 +34,7 @@ public class CowsManager : MonoBehaviour
         {
             realCowsNumber--;
             text.text = CowsNumber.ToString();
-            LevelManager.instance.CowsEnded(this);
+            LevelManager.instance.LevelLose();
         }
     }
     public void PickupCow()

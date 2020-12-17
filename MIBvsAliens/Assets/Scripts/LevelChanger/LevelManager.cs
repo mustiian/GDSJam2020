@@ -28,12 +28,12 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         controller = FindObjectOfType<WavesController>();
-        controller.OnFinishWaves += WavesFinished;
+        controller.OnFinishWaves += LevelWin;
         fader = FindObjectOfType<FaderController>();
         fader.FadeOut(1f);
     }
 
-    public void WavesFinished(WavesController controller)
+    public void LevelWin(WavesController controller)
     {
         if (!panelLose)
             return;
@@ -45,7 +45,19 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void CowsEnded(CowsManager controller)
+    public void LevelWin()
+    {
+        if (!panelLose)
+            return;
+
+        if (panelLose.gameObject.activeSelf == false)
+        {
+            panelWin.gameObject.SetActive(true);
+            Time.timeScale = 0f;
+        }
+    }
+
+    public void LevelLose()
     {
         if (!panelWin)
             return;

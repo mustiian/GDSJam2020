@@ -3,5 +3,6 @@
     Black,
     Old,
     Bald,
-    Girl
+    Girl,
+    Building
 }
