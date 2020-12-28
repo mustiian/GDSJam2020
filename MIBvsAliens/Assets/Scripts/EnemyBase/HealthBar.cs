@@ -5,36 +5,41 @@ using UnityEngine;
 
 public class HealthBar : MonoBehaviour
 {
-    private FightingSystem _fightingSystem;
-    private UnitControlSystem _controlSystem;
+    [HideInInspector]public FightingSystem fightingSystem;
+    [HideInInspector]public UnitControlSystem controlSystem;
+    [HideInInspector]public Race type;
+    public event EventHandler Destroyed;
+
     private float maxHealth;
-    private float health;
     private float spriteOriginalScaleX;
     private SpriteRenderer sprite;
 
     // Start is called before the first frame update
     void Start()
     {
-        _controlSystem = GetComponentInParent<UnitControlSystem>();
-        _controlSystem.Initialize(Vector3.zero, Vector3.zero);
-        _controlSystem.WillBeDestroyed += ControlSystemOnWillBeDestroyed;
+        controlSystem = GetComponentInParent<UnitControlSystem>();
+        controlSystem.Initialize(Vector3.zero, Vector3.zero);
+        controlSystem.WillBeDestroyed += ControlSystemOnWillBeDestroyed;
         
-        _fightingSystem = GetComponentInParent<FightingSystem>();
-        _fightingSystem.GotHit += FightSystemOnGotHit;
-        _fightingSystem.AfterAnimationDied += FightSystemOnAfterAnimationDied;
+        fightingSystem = GetComponentInParent<FightingSystem>();
+        fightingSystem.GotHit += FightSystemOnGotHit;
+        fightingSystem.AfterAnimationDied += FightSystemOnAfterAnimationDied;
 
         var baseCreature = GetComponentInParent<BaseCreature>();
         sprite = GetComponent<SpriteRenderer>();
-        if (baseCreature.race == Race.Aliens)
+        type = baseCreature.race;
+
+        if (type == Race.Aliens)
             maxHealth = GameManager.instance.charactersInfo.alienInfo[(int)AlienType.Building].characterInfo.health;
         else
-            maxHealth = GameManager.instance.charactersInfo.alienInfo[(int)AgentType.Building].characterInfo.health;
+            maxHealth = GameManager.instance.charactersInfo.agentInfo[(int)AgentType.Building].characterInfo.health;
         spriteOriginalScaleX = sprite.transform.localScale.x;
     }
 
     private void FightSystemOnAfterAnimationDied(object sender, EventArgs e)
     {
         ReleaseEventHandlers();
+        Destroyed?.Invoke(this, EventArgs.Empty);
     }
 
     private void FightSystemOnGotHit(object sender, float e)
@@ -49,14 +54,8 @@ public class HealthBar : MonoBehaviour
 
     private void ReleaseEventHandlers()
     {
-        _controlSystem.WillBeDestroyed -= ControlSystemOnWillBeDestroyed;
-        _fightingSystem.GotHit -= FightSystemOnGotHit;
-        _fightingSystem.AfterAnimationDied -= FightSystemOnAfterAnimationDied;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        controlSystem.WillBeDestroyed -= ControlSystemOnWillBeDestroyed;
+        fightingSystem.GotHit -= FightSystemOnGotHit;
+        fightingSystem.AfterAnimationDied -= FightSystemOnAfterAnimationDied;
     }
 }
